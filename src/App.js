@@ -549,7 +549,7 @@ const Categorization = () => {
           type="text"
           value={search}
           onChange={handleSearch}
-          placeholder="Buscar categoría..."
+          placeholder="Buscar pais emisor del documento..."
           className="w-full p-2 border rounded"
         />
       </div>
