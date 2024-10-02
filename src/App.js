@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, FileText, List, Link, Briefcase } from 'lucide-react';
 
-const ConsultarFuenteButton = (url) => {
+const ConsultarFuenteButton = ({url}) => {
   return (
     <div className="mt-4 text-center">
       <a
@@ -407,7 +407,7 @@ const VisaRegime = () => {
           </tbody>
         </table>
       )}
-      < ConsultarFuenteButton url="https://dirnacmigraciones-my.sharepoint.com/personal/aepavon_migraciones_gob_ar/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments%2Fvisas%2Epdf&parent=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments&ga=1" />
+      < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/personal/aepavon_migraciones_gob_ar/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments%2Fvisas%2Epdf&parent=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments&ga=1"} />
     </div>
   );
 };
@@ -488,7 +488,7 @@ const Agreements = () => {
       {results.length === 0 && search.length >= 3 && (
         <p className="mt-4 text-center text-gray-500">No se encontraron convenios que coincidan con la búsqueda.</p>
       )}
-      <ConsultarFuenteButton url=""/>
+      <ConsultarFuenteButton url={""}/>
     </div>
   );
 };
@@ -579,7 +579,7 @@ const Categorization = () => {
           </tbody>
         </table>
       )}
-      <ConsultarFuenteButton url=""/>
+      <ConsultarFuenteButton url={""}/>
     </div>
   );
 };
