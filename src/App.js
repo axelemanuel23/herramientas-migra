@@ -422,13 +422,19 @@ const Agreements = () => {
       name: "Tratado de Facilitacion Turistica TFT",
       documentCountry: ["BRASIL"],
       beneficiaryCountry: [""],
-      detail: "Un ciudadano cuya nacionalidad requiera visado puede ingresar con Cartera de Habilitacion Nacional"
+      detail: "Un ciudadano con residencia permanente cuya nacionalidad requiera visado puede ingresar con Cartera de Habilitacion Nacional"
     },
     {
       name: "Argentina - Chile",
       documentCountry: ["Chile"],
       beneficiaryCountry: [""],
-      detail: "Un ciudadano cuya nacionalidad requiera visado puede ingresar con Cedula de Identidad Chilena"
+      detail: "Un ciudadano con residencia permanente cuya nacionalidad requiera visado puede ingresar con Cedula de Identidad Chilena"
+    },
+    {
+      name: "San Borja",
+      documentCountry: ["Brasil"],
+      beneficiaryCountry: ["Brasil"],
+      detail: "...."
     }
   ];
 
