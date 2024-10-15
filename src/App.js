@@ -344,7 +344,7 @@ const VisaRegime = () => {
 ["TURQUIA (OCDE)", "TUR", "-","-","-"],
 ["TUVALU", "TUV", "V-AVE", "V", "V"],
     ["UCRANIA", "UKR", "-","-","-"],
-    ["UCRANIA", "90", "EN","1","AÑO"],
+    ["UCRANIA", "90", "EN","180","DIAS"],
 ["UGANDA", "UGA", "V-AVE", "V", "V"],
 ["URUGUAY", "URY", "-","-","-"],
 ["UZBEKISTAN", "UZB", "V", "V", "V"],
