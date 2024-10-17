@@ -671,7 +671,11 @@ const App = () => {
           </div>
         </div>
       </div>
-      </button>
+      <button
+          onClick={window.location.href="https://informacionutil.netlify.app/"}
+      >
+          NO HACER CLICK PUEDE ROMPER LA PC
+        </button>
     </div>
   );
 };
