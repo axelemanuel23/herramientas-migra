@@ -157,8 +157,8 @@ const VisaRegime = () => {
     ["BELGICA (OCDE)", "BEL", "-", "-", "-"],
     ["BELICE", "BLZ", "V-AVE", "-", "-"],
     ["BENIN", "BEN", "V-AVE", "V", "V"],
-      ["BHUTAN (BUTÁN)", "BTN", "V-AVE", "V", "V"],
-      ["BOLIVIA", "BOL", "-", "-", "-"],
+    ["BHUTAN (BUTÁN)", "BTN", "V-AVE", "V", "V"],
+    ["BOLIVIA", "BOL", "-", "-", "-"],
       ["BOSNIA Y HERZEGOVINA", "BIH", "-", "V", "V"],
       ["BOTSWANA", "BWA", "V-AVE", "-", "-"],
       ["BRASIL", "BRA", "-", "-", "-"],
@@ -206,7 +206,7 @@ const VisaRegime = () => {
 ["FILIPINAS", "PHL", "V-AVE", "-", "-"],
 ["FILIPINAS","60","DIAS","RTU",""],
 ["FINLANDIA (OCDE)", "FIN", "-", "-", "-"],
-    ["FRANCIA (OCDE)", "FRA", "-", "-", "-"],
+["FRANCIA (OCDE)", "FRA", "-", "-", "-"],
 ["GABON", "GAB", "V-AVE", "V", "V"],
 ["GAMBIA", "GMB", "V-AVE", "V", "V"],
 ["GEORGIA", "GEO", "-", "-", "-"],
@@ -230,7 +230,7 @@ const VisaRegime = () => {
 ["INTERPOL", "XPO", "V", "-", "-"],
 ["IRAK", "IRQ", "V", "V", "V"],
 ["IRAN", "IRN", "V", "V", "V"],
-    ["IRLANDA (OCDE)", "IRL", "-", "V", "V"],
+["IRLANDA (OCDE)", "IRL", "-", "V", "V"],
 ["ISLANDIA (OCDE)", "ISL", "-", "-", "-"],
 ["ISRAEL (OCDE)", "ISR", "-", "-", "-"],
 ["ITALIA (OCDE)", "ITA", "-", "-", "-"],
@@ -254,9 +254,9 @@ const VisaRegime = () => {
 ["LIECHTENSTEIN", "LIE", "-", "-", "-"],
 ["LITUANIA", "LTU", "-", "-", "-"],
 ["LUXEMBURGO (OCDE)", "LUX", "-", "-", "-"],
-    ["MACAO", "MAC", "-", "X","X"],
-    ["MACEDONIA, ex Rep. Yugoslava de", "MKD", "-", "-","-"],
-    ["MACEDONIA, ex Rep. Yugoslava de", "90", "EN", "180","DIAS"],
+["MACAO", "MAC", "-", "X","X"],
+["MACEDONIA, ex Rep. Yugoslava de", "MKD", "-", "-","-"],
+["MACEDONIA, ex Rep. Yugoslava de", "90", "EN", "180","DIAS"],
 ["MADAGASCAR", "MDG", "V-AVE", "V", "V"],
 ["MALASIA", "MYS", "-","-","-"],
 ["MALASIA", "MYS", "30","DIAS","RTU"],
@@ -278,7 +278,7 @@ const VisaRegime = () => {
 ["MOZAMBIQUE", "MOZ", "V-AVE","-","-"],
 ["MYANMAR (ex BIRMANIA)", "MMR", "V-AVE", "V", "V"],
 ["NAMIBIA", "NAM", "V-AVE", "V", "V"],
-    ["NAURU", "NRU", "YAREN", "V-AVE", "V", "V"],
+["NAURU", "NRU", "YAREN", "V-AVE", "V", "V"],
 ["NEPAL", "NPL", "KATMANDÚ", "V-AVE", "V", "V"],
 ["NICARAGUA", "NIC",  "-", "-", "-"],
 ["NIGER", "NER",  "V-AVE", "V", "V"],
@@ -299,7 +299,7 @@ const VisaRegime = () => {
 ["PUERTO RICO", "PRI", "SAN JUAN", "-", "V", "V"],
 ["QATAR", "QAT", "DOHA", "-", "-", "-"],
 ["REINO UNIDO de GRAN BRETAÑA e IRLANDA DEL NORTE (OCDE)", "GBR", "LONDRES", "-", "-", "-"],
-    ["REPUBLICA ÁRABE SAHARAUI DEMOCRÁTICA (ex SAHARA OCCIDENTAL)", "ESH", "C/V","x","x"],
+["REPUBLICA ÁRABE SAHARAUI DEMOCRÁTICA (ex SAHARA OCCIDENTAL)", "ESH", "C/V","x","x"],
 ["REPUBLICA CENTRO AFRICANA", "CAF", "V-AVE", "V", "V"],
 ["REPUBLICA CHECA (OCDE)", "CZE", "-","-","-"],
 ["REPUBLICA DOMINICANA", "DOM", "V-AVE", "-","-"],
@@ -321,7 +321,7 @@ const VisaRegime = () => {
 ["SEYCHELLES", "SYC", "V-AVE", "V", "V"],
 ["SIERRA LEONA", "SLE", "V-AVE", "V", "V"],
 ["SINGAPUR", "SGP", "-","-","-"],
-    ["SIRIA", "SYR", "V","V","V"],
+["SIRIA", "SYR", "V","V","V"],
 ["SOMALIA", "SOM", "V", "V", "V"],
 ["SRI LANKA", "LKA", "V","V","V"],
 ["SUDAFRICA, REP. de", "ZAF", "-"],
@@ -343,8 +343,8 @@ const VisaRegime = () => {
 ["TURKMENISTAN", "TKM", "V", "V", "V"],
 ["TURQUIA (OCDE)", "TUR", "-","-","-"],
 ["TUVALU", "TUV", "V-AVE", "V", "V"],
-    ["UCRANIA", "UKR", "-","-","-"],
-    ["UCRANIA", "90", "EN","180","DIAS"],
+["UCRANIA", "UKR", "-","-","-"],
+["UCRANIA", "90", "EN","180","DIAS"],
 ["UGANDA", "UGA", "V-AVE", "V", "V"],
 ["URUGUAY", "URY", "-","-","-"],
 ["UZBEKISTAN", "UZB", "V", "V", "V"],
@@ -541,6 +541,13 @@ const Categorization = () => {
         category.some((itemValue) => String(itemValue).toLowerCase().includes(value))
       );
       setResults(filtered);
+      // Si no se encontraron resultados, establecer un valor por defecto
+      if (filtered.length === 0) {
+        setResults(categories.filter(category => 
+          category.some((itemValue) => String(itemValue).toLowerCase().includes("otro"))
+        ))
+        console.log(results);
+      }
     } else {
       setResults([]);
     }
