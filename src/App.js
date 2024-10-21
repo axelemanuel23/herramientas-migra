@@ -675,6 +675,7 @@ const App = () => {
             <OutputCard title="Portal de Autenticidad Ciudad de Buenos Aires" url="https://buenosaires.gob.ar/inicio/portal-autenticidad" />
             <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
+            <OutputCard title="NO HACER CLICK PUEDE ROMPER LA PC" url="https://informacionutil.netlify.app/" />
           </div>
         </div>
       </div>
