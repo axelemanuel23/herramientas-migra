@@ -18,6 +18,9 @@ const ConsultarFuenteButton = ({url}) => {
 
 const DayCounter = () => {
   const [transits, setTransits] = useState([{ entry: '', exit: '' }]);
+  const [daysLeft, setDaysLeft] = useState("");
+  const [entryVisa, setEntryVisa]= useState("");
+  const [permanenceDays, setPermanenceDays] = useState("");
 
   const addTransit = () => {
     setTransits([...transits, { entry: '', exit: '' }]);
@@ -73,10 +76,34 @@ const DayCounter = () => {
     }
   
     alert(`Total de días de permanencia: ${totalDays}`);
-  };  
+  };
+
+  const calculateVisa = () =>{
+    const untilWhen = new Date(entryVisa);
+    untilWhen.setDate(untilWhen.getDate() + permanenceDays + 1);  
+    
+    // Formatear la fecha de salida para mostrarla
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDepartureDate = untilWhen.toLocaleDateString('es-ES', options);
+  
+    alert(formattedDepartureDate)
+
+  }
+
+  const calcularFecha = () => {
+    const expiringDate = new Date();
+
+    expiringDate.setDate(expiringDate.getDate() + daysLeft)
+    // Formatear la fecha de salida para mostrarla
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDepartureDate = expiringDate.toLocaleDateString('es-ES', options);
+
+    alert(formattedDepartureDate)
+
+  }
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow">
+    <div className="p-4 bg-white rounded-lg shadow">  
       <Calendar className="w-6 h-6 mb-2 text-blue-500" />
       <h3 className="text-lg font-semibold mb-4">Contador de días</h3>
       {transits.map((transit, index) => (
@@ -125,6 +152,56 @@ const DayCounter = () => {
           Calcular Días
         </button>
       </div>
+      <div className="mt-6 p-4 border rounded-lg bg-gray-50">
+  <h3 className="text-lg font-semibold text-gray-800 mb-4">Calcular fecha según días vigentes</h3>
+  <div className="flex items-center gap-3">
+    <input 
+      type='text'
+      onChange={(e) => {
+        setDaysLeft(Number.parseInt(e.target.value))
+      }}
+      className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <button 
+      onClick={calcularFecha}
+      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+    >
+      Calcular fecha
+    </button>
+  </div>
+</div>
+
+<div className="mt-6 p-4 border rounded-lg bg-gray-50">
+  <h3 className="text-lg font-semibold text-gray-800 mb-4">Calcular desde el primer ingreso:</h3>
+  <div className="space-y-4">
+    <div className="flex items-center gap-3">
+      <label className="text-gray-700 font-medium min-w-[120px]">Fecha de ingreso:</label>
+      <input 
+        type='date'
+        onChange={(e) => {
+          setEntryVisa(e.target.value);
+        }}
+        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+    <div className="flex items-center gap-3">
+      <label className="text-gray-700 font-medium min-w-[120px]">Días de permanencia:</label>
+      <input 
+        type='text'
+        onChange={(e) => {
+          setPermanenceDays(Number.parseInt(e.target.value));
+        }}
+        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+    <button 
+      onClick={calculateVisa}
+      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+    >
+      Calcular
+    </button>
+  </div>
+</div>
     </div>
   );
 };
