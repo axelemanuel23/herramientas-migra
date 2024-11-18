@@ -752,6 +752,7 @@ const App = () => {
             <OutputCard title="Portal de Autenticidad Ciudad de Buenos Aires" url="https://buenosaires.gob.ar/inicio/portal-autenticidad" />
             <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
+            <OutputCard title="Plantillas para Incidentes" url="https://dirnacmigraciones-my.sharepoint.com/:x:/r/personal/aepavon_migraciones_gob_ar/_layouts/15/doc2.aspx?sourcedoc=%7B8F0321F9-EBA2-485E-84C4-DF275D591036%7D&file=Incidentes.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&ct=1731969760019&wdOrigin=OFFICECOM-WEB.START.REC&cid=53a21026-71ba-4f37-8b37-c7b08d31f407&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=49009397-cf38-465f-a55e-d8296ab1f76b/" />
           </div>
         </div>
       </div>
