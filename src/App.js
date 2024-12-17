@@ -47,7 +47,7 @@ const DayCounter = () => {
         return;
       }
   
-      // Check if dates are in the future
+      // Check if dates are in the future 
       if (entryDate > today || exitDate > today) {
         alert("Las fechas no pueden ser posteriores a la fecha actual.");
         return;
@@ -68,7 +68,7 @@ const DayCounter = () => {
       // Add this transit's range to the list of checked dates
       allDates.push({ entry: entryDate, exit: exitDate });
   
-      // Calculate days with the new rule: if difference is 1 day or more, subtract 1 day
+      // Calculate days with the rule: if difference is 1 day or more, subtract 1 day
       let difference = entryDate === exitDate ? 1 : (exitDate - entryDate) / (1000 * 60 * 60 * 24) + 1;
       if (difference > 1) difference -= 1;
   
@@ -87,7 +87,6 @@ const DayCounter = () => {
     const formattedDepartureDate = untilWhen.toLocaleDateString('es-ES', options);
   
     alert(formattedDepartureDate)
-
   }
 
   const calcularFecha = () => {
@@ -99,7 +98,6 @@ const DayCounter = () => {
     const formattedDepartureDate = expiringDate.toLocaleDateString('es-ES', options);
 
     alert(formattedDepartureDate)
-
   }
 
   return (
