@@ -767,8 +767,8 @@ const App = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-4">Salida</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <OutputCard title="Partida de Nacimiento Provincia de Buenos Aires" url="https://www.gdeba.gba.gob.ar/consultagedo/" />
             <OutputCard title="Validaciòn de Documentos Provincia de San Juan" url="https://validacion.sanjuan.gob.ar/" />
+            <OutputCard title="Partida de Nacimiento Provincia de Buenos Aires" url="https://www.gdeba.gba.gob.ar/consultagedo/" />
             <OutputCard title="Portal de Autenticidad Ciudad de Buenos Aires" url="https://buenosaires.gob.ar/inicio/portal-autenticidad" />
             <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
