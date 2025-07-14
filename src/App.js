@@ -773,6 +773,9 @@ const App = () => {
             <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
             <OutputCard title="Plantillas para Incidentes" url="https://dirnacmigraciones-my.sharepoint.com/:x:/g/personal/aepavon_migraciones_gob_ar/EfkhA4-i615IhMTfJ11ZEDYBmNtOsCqT__BJqJJTkhDrUg?e=oD9grn" />
+            <OutputCard title="Consulta de expedientes - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
+            <OutputCard title="Consulta de antecedentes judiciales - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
+          
           </div>
         </div>
       </div>
