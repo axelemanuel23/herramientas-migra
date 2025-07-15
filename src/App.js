@@ -755,9 +755,11 @@ const App = () => {
               </div>
             </button>
           </div>
+        <div>
         <OutputCard title="Consulta de expedientes - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
             <OutputCard title="Consulta de antecedentes judiciales - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
-        </div>
+  </div>      
+  </div>
   
         {selectedTool && (
           <div className="mb-12">
