@@ -755,10 +755,7 @@ const App = () => {
               </div>
             </button>
           </div>
-          <div className="mt-8 space-y-4">
-            <OutputCard title="Consulta de expedientes - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
-            <OutputCard title="Consulta de antecedentes judiciales - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
-          </div>      
+             
         </div>
   
         {selectedTool && (
@@ -767,6 +764,10 @@ const App = () => {
             {renderSelectedTool()}
           </div>
         )}
+<div className="mt-8 space-y-4">
+            <OutputCard title="Consulta de expedientes - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
+            <OutputCard title="Consulta de antecedentes judiciales - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
+          </div>   
   
         <div>
           <h2 className="text-2xl font-semibold mb-4">Salida</h2>
