@@ -770,7 +770,7 @@ const App = () => {
           </div>   
   
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Salida</h2>
+          <h2 className="text-2xl font-semibold mb-4 mt-4">Salida</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <OutputCard title="Validaciòn de Documentos Provincia de San Juan" url="https://validacion.sanjuan.gob.ar/" />
             <OutputCard title="Partida de Nacimiento Provincia de Buenos Aires" url="https://www.gdeba.gba.gob.ar/consultagedo/" />
