@@ -500,7 +500,7 @@ const VisaRegime = () => {
           </tbody>
         </table>
       )}
-      < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/personal/aepavon_migraciones_gob_ar/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments%2Fvisas%2Epdf&parent=%2Fpersonal%2Faepavon%5Fmigraciones%5Fgob%5Far%2FDocuments&ga=1"} />
+      < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
     </div>
   );
 };
