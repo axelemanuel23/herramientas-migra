@@ -589,7 +589,7 @@ const Agreements = () => {
       {results.length === 0 && search.length >= 3 && (
         <p className="mt-4 text-center text-gray-500">No se encontraron convenios que coincidan con la búsqueda.</p>
       )}
-      <ConsultarFuenteButton url={""}/>
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EaCzFJidcB9OqIhou7GFA1sBQayzZ4aJcpStp-aqWQjXEw?e=Myhent"}/>
     </div>
   );
 };
@@ -690,7 +690,7 @@ const Categorization = () => {
           </tbody>
         </table>
       )}
-      <ConsultarFuenteButton url={""}/>
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EfrcgdXy3XZHp0_0V3j_wIYBrcgfDgOD040nMXxoZXFooQ?e=M1axfU"}/>
     </div>
   );
 };
