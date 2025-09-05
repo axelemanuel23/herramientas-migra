@@ -222,6 +222,8 @@ const DayCounter = () => {
 const VisaRegime = () => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
+  const [filteredObs, setFilteredObs] = useState([]);
+
 
   // Array de ejemplo para visas
   const visas = [
@@ -449,20 +451,33 @@ const VisaRegime = () => {
     ["ZIMBABWE", "ZWE", "V-AVE", "V", "V"],
   ];
 
+  const obs = [
+  { codigo: "CHN", texto: "China observaciones" },
+];
+
   const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
-    setSearch(value);
-    if (value.length >= 3) {
-      const filtered = visas.filter(visa => 
-        visa.some((itemValue) => 
-          String(itemValue).toLowerCase().includes(value)
-        )
-      );
-      setResults(filtered);
-    } else {
-      setResults([]);
-    }
-  };
+  const value = e.target.value.toLowerCase();
+  setSearch(value);
+
+  if (value.length >= 3) {
+    const filtered = visas.filter(visa =>
+      visa.some(itemValue =>
+        String(itemValue).toLowerCase().includes(value)
+      )
+    );
+    setResults(filtered);
+
+    const obsFiltradas = obs.filter(o =>
+      o.codigo.toLowerCase().includes(value) ||
+      o.texto.toLowerCase().includes(value)
+    );
+    setFilteredObs(obsFiltradas);
+  } else {
+    setResults([]);
+    setFilteredObs([]);
+  }
+};
+
 
   return (
     <div className="p-4 bg-white rounded-lg shadow">
@@ -500,6 +515,17 @@ const VisaRegime = () => {
             ))}
           </tbody>
         </table>
+{filteredObs.length > 0 && (
+  <div className="mt-4">
+    <h4 className="text-md font-semibold">Observaciones adicionales</h4>
+    <ul className="list-disc pl-5 text-sm text-gray-700">
+      {filteredObs.map((o, index) => (
+        <li key={index}>{o.texto}</li>
+      ))}
+    </ul>
+  </div>
+)}
+
       )}
       < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
     </div>
