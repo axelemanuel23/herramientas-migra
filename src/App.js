@@ -537,7 +537,7 @@ permanencia." },
     <h4 className="text-md font-semibold">Observaciones adicionales</h4>
     <ul className="list-disc pl-5 text-sm text-gray-700">
       {filteredObs.map((o, index) => (
-        <li key={index}>{o.pais} : {o.texto}</li>
+        <li key={index}>{o.pais} {o.texto}</li>
       ))}
     </ul>
   </div>
