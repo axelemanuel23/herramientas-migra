@@ -453,7 +453,7 @@ const VisaRegime = () => {
 
   const obs = [
   { codigo: "CHN", texto: "China observaciones" },
-];
+  ];
 
   const handleSearch = (e) => {
   const value = e.target.value.toLowerCase();
@@ -515,7 +515,8 @@ const VisaRegime = () => {
             ))}
           </tbody>
         </table>
-{filteredObs.length > 0 && (
+      )}
+      {filteredObs.length > 0 && (
   <div className="mt-4">
     <h4 className="text-md font-semibold">Observaciones adicionales</h4>
     <ul className="list-disc pl-5 text-sm text-gray-700">
@@ -525,8 +526,6 @@ const VisaRegime = () => {
     </ul>
   </div>
 )}
-
-      )}
       < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
     </div>
   );
