@@ -452,23 +452,21 @@ const VisaRegime = () => {
   ];
 
   const obs = [
-    { pais : "", codigo : "" , texto : ""},
-  { pais: "", codigo: "CHN", texto: "Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025, se resuelve:
+    //{ pais : "", codigo : "" , texto : ""},
+    { pais: "CHINA", codigo: "CHN", texto: "Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025, se resuelve:
 ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA
 POPULAR DE CHINA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los
 ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria.
 En el caso de los nacionales de la REPÚBLICA POPULAR DE CHINA, resultarán comprendidos en el referido beneficio las subcategorías migratorias del
 artículo 24 de la Ley N° 25.871, inciso a) 'turistas' y h) Disposición N° 1171/10 'hombre de negocios', con un plazo de permanencia máximo autorizado
 de hasta TREINTA (30) días." },
-  { pais: "", codigo: "IND", texto: "Mediante RESOL-2025-353-APN-VGI#JGM-Resolución N° 353 del 26 de agosto de 2025 (entra en vigencia a partir del 28/07/2025), se resuelve:
+    { pais: "INDIA", codigo: "IND", texto: "Mediante RESOL-2025-353-APN-VGI#JGM-Resolución N° 353 del 26 de agosto de 2025 (entra en vigencia a partir del 28/07/2025), se resuelve:
 ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DE LA
 INDIA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE
 AMÉRICA correspondiente a similar categoría migratoria, previa verificación de las mismas con las autoridades pertinentes y su ingreso al país se efectuare en
 carácter transitorio en los términos del inciso a) 'Turistas' del artículo 24 de la Ley N° 25.871 y sus modificatorios, con un plazo de hasta NOVENTA (90) días de
 permanencia." },
-
-    
-  ];
+    ];
 
   const handleSearch = (e) => {
   const value = e.target.value.toLowerCase();
@@ -542,7 +540,7 @@ permanencia." },
     </ul>
   </div>
 )}
-      < ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
     </div>
   );
 };
