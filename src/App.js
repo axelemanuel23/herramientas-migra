@@ -528,7 +528,7 @@ const VisaRegime = () => {
     </ul>
   </div>
 )}
-      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EW8sWbNm6VNBrVJIyaSTXgABV91XeJ35yg48JtNp8PY8Tw?e=AbGx7d"} />
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EROPWwpyDnBEutGUWT5kMw0B_b892UGcSf1wC-9Rp9kjkw?e=8qBDVW"} />
     </div>
   );
 };
