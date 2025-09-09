@@ -470,8 +470,7 @@ const VisaRegime = () => {
 
     const obsFiltradas = obs.filter(o =>
       o.pais.toLowerCase().includes(value) ||
-      o.codigo.toLowerCase().includes(value) ||
-      o.texto.toLowerCase().includes(value)
+      o.codigo.toLowerCase().includes(value)
     );
     setFilteredObs(obsFiltradas);
   } else {
