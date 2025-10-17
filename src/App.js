@@ -795,6 +795,7 @@ const App = () => {
           </div>
         )}
 <div className="mt-8 space-y-4">
+            <OutputCard title="Link para consulta de registros migratorios (Particulares)" url="https://www.migraciones.gob.ar/transitos/" />
             <OutputCard title="Consulta de expedientes - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
             <OutputCard title="Consulta de antecedentes judiciales - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
           </div>   
