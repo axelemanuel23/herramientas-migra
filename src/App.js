@@ -807,6 +807,8 @@ const App = () => {
             <OutputCard title="Partida de Nacimiento Provincia de Buenos Aires" url="https://www.gdeba.gba.gob.ar/consultagedo/" />
             <OutputCard title="Portal de Autenticidad Ciudad de Buenos Aires" url="https://buenosaires.gob.ar/inicio/portal-autenticidad" />
             <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
+            <OutputCard title="Validador de actas Santiago del Estero" url="https://validaciones.sde.gob.ar/" />
+            <OutputCard title="Validador de Datos de Partidas On-line" url="https://www.registrocivil.misiones.gov.ar/index.php/gestion/verificacion" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
             <OutputCard title="Plantillas para Incidentes" url="https://dirnacmigraciones-my.sharepoint.com/:x:/g/personal/aepavon_migraciones_gob_ar/EfkhA4-i615IhMTfJ11ZEDYBmNtOsCqT__BJqJJTkhDrUg?e=oD9grn" />
             
