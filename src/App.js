@@ -549,7 +549,7 @@ const Agreements = () => {
       name: "Argentina - Chile",
       documentCountry: ["Chile"],
       beneficiaryCountry: [""],
-      detail: "Un ciudadano con residencia permanente cuya nacionalidad requiera visado puede ingresar con Cedula de Identidad Chilena"
+      detail: "-Convenio de Tránsito de Pasajeros- del 30/10/47, modificado en Buenos Aires el 02/08/91, que entró en vigor el 30/09/93 y vuelto a modificar en marzo de 2012. En virtud de dicho acuerdo, los residentes permanentes en uno y otro país podrán ingresar al otro con la sola presentación del documento de identidad adquirido por tal condición, aun cuando por su nacionalidad necesitarán visa consular. Es decir que un extranjero de un tercer país que requiera visa por su nacionalidad en argentina, si es residente permanente en chile podrá ingresar con su cédula de identidad de residente permanente. Y a condición de reciprocidad los residentes en argentina con DNI."
     },
     {
       name: "San Borja",
