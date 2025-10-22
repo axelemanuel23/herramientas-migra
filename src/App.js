@@ -544,21 +544,21 @@ const Agreements = () => {
       documentCountry: ["BRASIL"],
       beneficiaryCountry: [""],
       detail: "Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas.",
-      info: ""
+      info: ["CAT: TFT","PERM: 3 DIAS"],
     },
     {
       name: "Argentina - Chile",
       documentCountry: ["Chile"],
       beneficiaryCountry: [""],
       detail: "-Convenio de Tránsito de Pasajeros- del 30/10/47, modificado en Buenos Aires el 02/08/91, que entró en vigor el 30/09/93 y vuelto a modificar en marzo de 2012. En virtud de dicho acuerdo, los residentes permanentes en uno y otro país podrán ingresar al otro con la sola presentación del documento de identidad adquirido por tal condición, aun cuando por su nacionalidad necesitarán visa consular. Es decir que un extranjero de un tercer país que requiera visa por su nacionalidad en argentina, si es residente permanente en chile podrá ingresar con su cédula de identidad de residente permanente. Y a condición de reciprocidad los residentes en argentina con DNI.",
-      info: ""
+      info: ["RTU","PERM: 90 DIAS"],
     },
     {
       name: "San Borja",
       documentCountry: ["Brasil"],
       beneficiaryCountry: ["Brasil"],
       detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no,tendrán acceso sin visa al territorio de la otra Parte, para estadíasinferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen",
-      info: ""
+      info: ["S/C","PERM: 90 DIAS"],
     }
   ];
 
@@ -611,7 +611,14 @@ const Agreements = () => {
                   <td className="p-2 border-b">{convenio.name}</td>
                   <td className="p-2 border-b">{convenio.documentCountry.join(', ')}</td>
                   <td className="p-2 border-b">{convenio.beneficiaryCountry.join(', ')}</td>
-                  <td className="p-2 border-b">{convenio.detail}</td>
+                  <td className="p-2 border-b">{convenio.detail}</td>                  
+                  <td className="p-2 border-b">
+                    <ul className="list-disc pl-4">
+                      {convenio.info.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </td>
                 </tr>
               ))}
             </tbody>
