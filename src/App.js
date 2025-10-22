@@ -442,7 +442,6 @@ const VisaRegime = () => {
   const obs = [
     
     { pais: "BULGARIA", codigo: "BGR", texto: " 90 DIAS EN 180 DIAS" },
-    { pais: "EGIPTO", codigo: "EGY", texto: " 15 DIAS RTU" },
     { pais: "FEDERACION RUSA (RUSIA)", codigo: "RUS", texto: " 90 DIAS EN 180 DIAS" },
     { pais: "BIELORRUSIA", codigo: "BLR", texto: " 90 DIAS EN 1 AÑO" },
     { pais: "GEORGIA", codigo: "GEO", texto: " 90 DIAS EN 180 DIAS" },
