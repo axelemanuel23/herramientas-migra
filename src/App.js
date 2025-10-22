@@ -351,8 +351,7 @@ const VisaRegime = () => {
     ["MACEDONIA, ex Rep. Yugoslava de", "MKD", "-", "-","-"],
     ["MACEDONIA, ex Rep. Yugoslava de", "90", "EN", "180","DIAS"],
     ["MADAGASCAR", "MDG", "V-AVE", "V", "V"],
-    ["MALASIA", "MYS", "-","-","-"],
-    ["MALASIA", "MYS", "30","DIAS","RTU"],
+    ["MALASIA", "MYS", "*OBS","-","-"],
     ["MALAWI", "MWI", "V-AVE", "V", "V"],
     ["MALDIVAS", "MDV", "V-AVE", "V", "V"],
     ["MALI", "MLI", "V", "V", "V"],
@@ -399,8 +398,7 @@ const VisaRegime = () => {
     ["REPUBLICA DOMINICANA", "DOM", "*Ver Obs", "-","-"],
     ["REPUBLICA ESLOVACA (OCDE)", "SVK", "-","-","-"],
     ["REPUBLICA MOLDAVA NISTRINA", "x", "-","-","-"],
-    ["RUMANIA", "ROU", "-","-","-"],
-    ["RUMANIA","90","EN","180","DIAS"],
+    ["RUMANIA", "ROU", "*obs","-","-"],
     ["RWANDA / RUANDA", "RWA", "V-AVE", "V", "V"],  
     ["SALOMON, ISLAS", "SLB", "V-AVE", "V", "V"],
     ["SAMOA OCCIDENTAL", "WSM", "V-AVE", "V", "V"],
@@ -452,9 +450,11 @@ const VisaRegime = () => {
   ];
 
   const obs = [
+    { pais: "MALASIA", codigo: "MAL", texto: "NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO HASTA TREINTA (30) DÍAS Y HASTA NOVENTA (90) DÍAS POR NEGOCIOS O DEPORTIVAS." },
+    { pais: "RUMANIA", codigo: "ROU", texto: "Nota Nº 7630/05 LETRA: DIGAC-DDV-VIS del 05/12/2005 Los nacionales de Rumania y de la República Argentina, titulares de pasaportes comunes válidos, estarán exentos de visados para la entrada, tránsito y permanencia en el territorio de la otra Parte, ya sea con propósito de turismo o de negocios, por un término de hasta noventa (90) días, dentro de un período de seis meses a partir de la fecha de su primer ingreso" },
     { pais: "CHINA", codigo: "CHN", texto: "Mediante RESOL-2025-316-APN-VGI JGM-Resolución N° 316 del 18 de julio de 2025, se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA POPULAR DE CHINA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. En el caso de los nacionales de la REPÚBLICA POPULAR DE CHINA, resultarán comprendidos en el referido beneficio las subcategorías migratorias del artículo 24 de la Ley N° 25.871, inciso a) -turistas- y h) Disposición N° 1171/10 -hombre de negocios-, con un plazo de permanencia máximo autorizado de hasta TREINTA (30) días." },
     { pais: "INDIA", codigo: "IND", texto: "Mediante RESOL-2025-353-APN-VGI#JGM-Resolución N° 353 del 26 de agosto de 2025 (entra en vigencia a partir del 28/07/2025), se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DE LA INDIA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria, previa verificación de las mismas con las autoridades pertinentes y su ingreso al país se efectuare en carácter transitorio en los términos del inciso a) -Turistas- del artículo 24 de la Ley N° 25.871 y sus modificatorios, con un plazo de hasta NOVENTA (90) días de permanencia." },
-    { pais: "REOUBLICA DOMINICANA", codigo: "DOM", texto: "Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025 (entra en vigencia a partir del 22/07/2025), se resuelve: ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DOMINICANA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. Los nacionales de la REPÚBLICA DOMINICANA accederán a la exención cuando su ingreso al país se efectúe exclusivamente en carácter transitorio en los términos del inciso a) del artículo 24 de la Ley N° 25.871, con un plazo de hasta NOVENTA (90) días de permanencia"},
+    { pais: "REPUBLICA DOMINICANA", codigo: "DOM", texto: "Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025 (entra en vigencia a partir del 22/07/2025), se resuelve: ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DOMINICANA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. Los nacionales de la REPÚBLICA DOMINICANA accederán a la exención cuando su ingreso al país se efectúe exclusivamente en carácter transitorio en los términos del inciso a) del artículo 24 de la Ley N° 25.871, con un plazo de hasta NOVENTA (90) días de permanencia"},
   ];
 
   const handleSearch = (e) => {
@@ -543,19 +543,22 @@ const Agreements = () => {
       name: "Tratado de Facilitacion Turistica",
       documentCountry: ["BRASIL"],
       beneficiaryCountry: [""],
-      detail: "Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas."
+      detail: "Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas.",
+      info: ""
     },
     {
       name: "Argentina - Chile",
       documentCountry: ["Chile"],
       beneficiaryCountry: [""],
-      detail: "-Convenio de Tránsito de Pasajeros- del 30/10/47, modificado en Buenos Aires el 02/08/91, que entró en vigor el 30/09/93 y vuelto a modificar en marzo de 2012. En virtud de dicho acuerdo, los residentes permanentes en uno y otro país podrán ingresar al otro con la sola presentación del documento de identidad adquirido por tal condición, aun cuando por su nacionalidad necesitarán visa consular. Es decir que un extranjero de un tercer país que requiera visa por su nacionalidad en argentina, si es residente permanente en chile podrá ingresar con su cédula de identidad de residente permanente. Y a condición de reciprocidad los residentes en argentina con DNI."
+      detail: "-Convenio de Tránsito de Pasajeros- del 30/10/47, modificado en Buenos Aires el 02/08/91, que entró en vigor el 30/09/93 y vuelto a modificar en marzo de 2012. En virtud de dicho acuerdo, los residentes permanentes en uno y otro país podrán ingresar al otro con la sola presentación del documento de identidad adquirido por tal condición, aun cuando por su nacionalidad necesitarán visa consular. Es decir que un extranjero de un tercer país que requiera visa por su nacionalidad en argentina, si es residente permanente en chile podrá ingresar con su cédula de identidad de residente permanente. Y a condición de reciprocidad los residentes en argentina con DNI.",
+      info: ""
     },
     {
       name: "San Borja",
       documentCountry: ["Brasil"],
       beneficiaryCountry: ["Brasil"],
-      detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no,tendrán acceso sin visa al territorio de la otra Parte, para estadíasinferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen"
+      detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no,tendrán acceso sin visa al territorio de la otra Parte, para estadíasinferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen",
+      info: ""
     }
   ];
 
@@ -599,6 +602,7 @@ const Agreements = () => {
                 <th className="p-2 border-b font-medium">País Documento</th>
                 <th className="p-2 border-b font-medium">Paises Beneficiados</th>
                 <th className="p-2 border-b font-medium">Detalle</th>
+                <th className="p-2 border-b font-medium">Informaciòn</th>
               </tr>
             </thead>
             <tbody>
