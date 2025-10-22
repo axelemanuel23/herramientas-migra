@@ -555,7 +555,7 @@ const Agreements = () => {
       name: "San Borja",
       documentCountry: ["Brasil"],
       beneficiaryCountry: ["Brasil"],
-      detail: "...."
+      detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no,tendrán acceso sin visa al territorio de la otra Parte, para estadíasinferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen"
     }
   ];
 
