@@ -540,10 +540,10 @@ const Agreements = () => {
   // Array de ejemplo para convenios
   const convenios = [
     {
-      name: "Tratado de Facilitacion Turistica TFT",
+      name: "Tratado de Facilitacion Turistica",
       documentCountry: ["BRASIL"],
       beneficiaryCountry: [""],
-      detail: "Un ciudadano con residencia permanente cuya nacionalidad requiera visado puede ingresar con Cartera de Habilitacion Nacional por un plazo máximo de 72 horas"
+      detail: "Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas."
     },
     {
       name: "Argentina - Chile",
