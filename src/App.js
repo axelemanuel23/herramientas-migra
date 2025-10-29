@@ -523,7 +523,6 @@ const VisaRegime = () => {
     <ul className="list-disc pl-5 text-sm text-gray-700">
       {filteredObs.map((o, index) => (
         <li key={index}>{o.pais}:{o.texto}</li>
-        <li key={index}>{o.info}</li>
       ))}
     </ul>
   </div>
