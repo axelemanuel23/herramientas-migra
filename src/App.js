@@ -441,19 +441,19 @@ const VisaRegime = () => {
 
   const obs = [
     
-    { pais: "BULGARIA", codigo: "BGR", texto: " 90 DIAS EN 180 DIAS", info: "" },
-    { pais: "FEDERACION RUSA (RUSIA)", codigo: "RUS", texto: " 90 DIAS EN 180 DIAS", info: "" },
-    { pais: "BIELORRUSIA", codigo: "BLR", texto: " 90 DIAS EN 1 AÑO", info: "" },
-    { pais: "GEORGIA", codigo: "GEO", texto: " 90 DIAS EN 180 DIAS", info: "" },
-    { pais: "INDONESIA", codigo: "IDN", texto: " 30 DIAS RTU", info: "" },
-    { pais: "KAZAJSTAN", codigo: "KZJ", texto: " 30 DIAS EN 1 AÑO", info: "" },
-    { pais: "MACEDONIA", codigo: "MKD", texto: " 90 DIAS EN 180 DIAS", info: "" },
-    { pais: "UCRANIA", codigo: "UKR", texto: " 90 DIAS EN 180 DIAS", info: "" },
-    { pais: "MALASIA", codigo: "MAL", texto: " NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO HASTA TREINTA (30) DÍAS Y HASTA NOVENTA (90) DÍAS POR NEGOCIOS O DEPORTIVAS.", info: "" },
-    { pais: "RUMANIA", codigo: "ROU", texto: " Nota Nº 7630/05 LETRA: DIGAC-DDV-VIS del 05/12/2005 Los nacionales de Rumania y de la República Argentina, titulares de pasaportes comunes válidos, estarán exentos de visados para la entrada, tránsito y permanencia en el territorio de la otra Parte, ya sea con propósito de turismo o de negocios, por un término de hasta noventa (90) días, dentro de un período de seis meses a partir de la fecha de su primer ingreso", info: "" },
-    { pais: "CHINA", codigo: "CHN", texto: " Mediante RESOL-2025-316-APN-VGI JGM-Resolución N° 316 del 18 de julio de 2025, se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA POPULAR DE CHINA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. En el caso de los nacionales de la REPÚBLICA POPULAR DE CHINA, resultarán comprendidos en el referido beneficio las subcategorías migratorias del artículo 24 de la Ley N° 25.871, inciso a) -turistas- y h) Disposición N° 1171/10 -hombre de negocios-, con un plazo de permanencia máximo autorizado de hasta TREINTA (30) días.", info: "" },
-    { pais: "INDIA", codigo: "IND", texto: " Mediante RESOL-2025-353-APN-VGI#JGM-Resolución N° 353 del 26 de agosto de 2025 (entra en vigencia a partir del 28/07/2025), se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DE LA INDIA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria, previa verificación de las mismas con las autoridades pertinentes y su ingreso al país se efectuare en carácter transitorio en los términos del inciso a) -Turistas- del artículo 24 de la Ley N° 25.871 y sus modificatorios, con un plazo de hasta NOVENTA (90) días de permanencia.", info: "" },
-    { pais: "REPUBLICA DOMINICANA", codigo: "DOM", texto: " Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025 (entra en vigencia a partir del 22/07/2025), se resuelve: ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DOMINICANA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. Los nacionales de la REPÚBLICA DOMINICANA accederán a la exención cuando su ingreso al país se efectúe exclusivamente en carácter transitorio en los términos del inciso a) del artículo 24 de la Ley N° 25.871, con un plazo de hasta NOVENTA (90) días de permanencia", info: ""},
+    { pais: "BULGARIA", codigo: "BGR", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "FEDERACION RUSA (RUSIA)", codigo: "RUS", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "BIELORRUSIA", codigo: "BLR", texto: " 90 DIAS EN 1 AÑO", textoaaclarar: "", aclaracion: "" },
+    { pais: "GEORGIA", codigo: "GEO", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "INDONESIA", codigo: "IDN", texto: " 30 DIAS RTU", textoaaclarar: "", aclaracion: "" },
+    { pais: "KAZAJSTAN", codigo: "KZJ", texto: " 30 DIAS EN 1 AÑO", textoaaclarar: "", aclaracion: "" },
+    { pais: "MACEDONIA", codigo: "MKD", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "UCRANIA", codigo: "UKR", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "MALASIA", codigo: "MAL", texto: " NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO HASTA TREINTA (30) DÍAS Y HASTA NOVENTA (90) DÍAS POR NEGOCIOS O DEPORTIVAS.", textoaaclarar: "", aclaracion: "" },
+    { pais: "RUMANIA", codigo: "ROU", texto: " Nota Nº 7630/05 LETRA: DIGAC-DDV-VIS del 05/12/2005 Los nacionales de Rumania y de la República Argentina, titulares de pasaportes comunes válidos, estarán exentos de visados para la entrada, tránsito y permanencia en el territorio de la otra Parte, ya sea con propósito de turismo o de negocios, por un término de hasta noventa (90) días, dentro de un período de seis meses a partir de la fecha de su primer ingreso", textoaaclarar: "", aclaracion: "" },
+    { pais: "CHINA", codigo: "CHN", texto: " Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025, se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA POPULAR DE CHINA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. En el caso de los nacionales de la REPÚBLICA POPULAR DE CHINA, resultarán comprendidos en el referido beneficio las subcategorías migratorias del artículo 24 de la Ley N° 25.871, inciso a) -turistas- y h) Disposición N° 1171/10 -hombre de negocios-, con un plazo de permanencia máximo autorizado de hasta TREINTA (30) días.", textoaaclarar: "RESOL-2025-316-APN-VGI#JGM", aclaracion: "Disposicion 316/2025" },
+    { pais: "INDIA", codigo: "IND", texto: " Mediante RESOL-2025-353-APN-VGI#JGM-Resolución N° 353 del 26 de agosto de 2025 (entra en vigencia a partir del 28/07/2025), se resuelve ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DE LA INDIA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria, previa verificación de las mismas con las autoridades pertinentes y su ingreso al país se efectuare en carácter transitorio en los términos del inciso a) -Turistas- del artículo 24 de la Ley N° 25.871 y sus modificatorios, con un plazo de hasta NOVENTA (90) días de permanencia.", textoaaclarar: "", aclaracion: "" },
+    { pais: "REPUBLICA DOMINICANA", codigo: "DOM", texto: " Mediante RESOL-2025-316-APN-VGI#JGM-Resolución N° 316 del 18 de julio de 2025 (entra en vigencia a partir del 22/07/2025), se resuelve: ARTÍCULO 1°.- Autorízase el ingreso sin visado consular argentino ni Autorización de Viaje Electrónica (AVE), a los extranjeros nacionales de la REPÚBLICA DOMINICANA, titulares de pasaporte ordinario, cuando el mismo se produzca con la presentación de visado válido y vigente para el ingreso a los ESTADOS UNIDOS DE AMÉRICA correspondiente a similar categoría migratoria. Los nacionales de la REPÚBLICA DOMINICANA accederán a la exención cuando su ingreso al país se efectúe exclusivamente en carácter transitorio en los términos del inciso a) del artículo 24 de la Ley N° 25.871, con un plazo de hasta NOVENTA (90) días de permanencia", textoaaclarar: "", aclaracion: ""},
   ];
 
   const handleSearch = (e) => {
@@ -479,9 +479,52 @@ const VisaRegime = () => {
   }
 };
 
+  const renderTextoConTooltip = (texto, palabraClave, aclaracion) => {
+    if (!palabraClave || !texto.includes(palabraClave)) return texto;
+
+    const partes = texto.split(new RegExp(`(${palabraClave})`, 'gi'));
+
+    return partes.map((parte, index) => {
+      const esClave = parte.toLowerCase() === palabraClave.toLowerCase();
+      return esClave ? (
+        <span key={index} className="tooltip-container">
+          {parte}
+          <span className="tooltip-modal">{aclaracion}</span>
+        </span>
+      ) : (
+        <span key={index}>{parte}</span>
+      );
+    });
+  };
+
 
   return (
     <div className="p-4 bg-white rounded-lg shadow">
+    <style>{`
+        .tooltip-container {
+          position: relative;
+          display: inline-block;
+          cursor: help;
+          color: #0077cc;
+          font-weight: bold;
+        }
+        .tooltip-modal {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #fefefe;
+          border: 1px solid #ccc;
+          padding: 8px;
+          border-radius: 4px;
+          white-space: nowrap;
+          z-index: 10;
+          display: none;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .tooltip-container:hover .tooltip-modal {
+          display: block;
+        }
+      `}</style>
       <Briefcase className="w-6 h-6 mb-2 text-green-500" />
       <h3 className="text-lg font-semibold">Régimen de visa</h3>
       <div className="mt-2">
@@ -522,7 +565,9 @@ const VisaRegime = () => {
     <h4 className="text-md font-semibold">Observaciones adicionales</h4>
     <ul className="list-disc pl-5 text-sm text-gray-700">
       {filteredObs.map((o, index) => (
-        <li key={index}>{o.pais}:{o.texto}</li>
+        <li key={index}>
+          {o.pais}: {renderTextoConTooltip(o.texto, o.textoaaclarar, o.aclaracion)}
+        </li>
       ))}
     </ul>
   </div>
