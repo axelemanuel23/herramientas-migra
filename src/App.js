@@ -779,6 +779,82 @@ const Categorization = () => {
   );
 };
 
+const Procedimientos = () => {
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
+
+  // Array de ejemplo para categorías
+  const items = [
+    ["BRASIL", "BRA", "NO" ,"ARE 180","ARE 180","AR"],
+  ];
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearch(value);
+    if (value.length >= 3) {
+      const filtered = items.filter(item => 
+        item.some((itemValue) => 
+          String(itemValue).toLowerCase().includes(value)
+        )
+      );
+      setResults(filtered);
+      // Si no se encontraron resultados, establecer un valor por defecto
+      if (filtered.length === 0) {
+        setResults(items.filter(item => 
+          item.some((itemValue) => 
+            String(itemValue).toLowerCase().includes("otro")
+          )
+        ));
+      }
+    } else {
+      setResults([]);
+    }
+  };
+
+  return (
+    <div className="p-4 bg-white rounded-lg shadow">
+      <List className="w-6 h-6 mb-2 text-purple-500" />
+      <h3 className="text-lg font-semibold">Procedimientos</h3>
+      <div className="mt-2">
+        <input
+          type="text"
+          value={search}
+          onChange={handleSearch}
+          placeholder="Buscar procedimientos vigentes..."
+          className="w-full p-2 border rounded"
+        />
+      </div>
+      {results.length > 0 && (
+        <table className="w-full mt-2">
+          <thead>
+            <tr>
+              <th className="text-left">Pais</th>
+              <th className="text-left">Codigo</th>
+              <th className="text-left">Convenio?</th>
+              <th className="text-left">Cedula de Identida</th>
+              <th className="text-left">Pasaporte</th>
+              <th className="text-left">Cedula de Residente</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((item, index) => (
+              <tr key={index}>
+              <td>{item[0]}</td>
+              <td>{item[1]}</td>
+              <td>{item[2]}</td>
+              <td>{item[3]}</td>
+              <td>{item[4]}</td>
+              <td>{item[5]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EfrcgdXy3XZHp0_0V3j_wIYBrcgfDgOD040nMXxoZXFooQ?e=M1axfU"}/>
+    </div>
+  );
+};
+
 // Componente de salida
 const OutputCard = ({ title, url }) => (
   <a 
@@ -804,6 +880,8 @@ const App = () => {
         return <Agreements />;
       case 'Categorization':
         return <Categorization />;
+      case 'Procedimientos':
+        return <Procedimientos />;
       default:
         return null;
     }
@@ -838,6 +916,12 @@ const App = () => {
               <div className="p-4 bg-white rounded-lg shadow transition-transform transform hover:scale-105 hover:shadow-lg">
                 <List className="w-6 h-6 mb-2 text-purple-500" />
                 <h3 className="text-lg font-semibold">Categorización de Argentinos</h3>
+              </div>
+            </button>
+            <button onClick={() => setSelectedTool('Procedimientos')}>
+              <div className="p-4 bg-white rounded-lg shadow transition-transform transform hover:scale-105 hover:shadow-lg">
+                <List className="w-6 h-6 mb-2 text-purple-500" />
+                <h3 className="text-lg font-semibold">Procedimientos vigentes</h3>
               </div>
             </button>
           </div>
