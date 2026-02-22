@@ -785,7 +785,7 @@ const Procedimientos = () => {
 
   // Array de ejemplo para categorías
   const items = [
-    ["BRASIL", "BRA", "NO" ,"ARE 180","ARE 180","AR"],
+    ["DATO 1"],
   ];
 
   const handleSearch = (e) => {
@@ -828,23 +828,13 @@ const Procedimientos = () => {
         <table className="w-full mt-2">
           <thead>
             <tr>
-              <th className="text-left">Pais</th>
-              <th className="text-left">Codigo</th>
-              <th className="text-left">Convenio?</th>
-              <th className="text-left">Cedula de Identida</th>
-              <th className="text-left">Pasaporte</th>
-              <th className="text-left">Cedula de Residente</th>
+              <th className="text-left">Titulo1</th>
             </tr>
           </thead>
           <tbody>
             {results.map((item, index) => (
               <tr key={index}>
               <td>{item[0]}</td>
-              <td>{item[1]}</td>
-              <td>{item[2]}</td>
-              <td>{item[3]}</td>
-              <td>{item[4]}</td>
-              <td>{item[5]}</td>
               </tr>
             ))}
           </tbody>
