@@ -931,8 +931,6 @@ const App = () => {
             <OutputCard title="Consulta de antecedentes Policia - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
             <OutputCard title="Consulta de expedientes Judiciales - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
             <OutputCard title="Consulta de expedientes judiciales - Colombia" url="https://consultaprocesos.ramajudicial.gov.co/procesos/NombreRazonSocial" />
-            <OutputCard title="Consulta de Procuraduria - Colombia" url="https://www.produraduria.gov.co/portal/antecedentes.html" />
-            <OutputCard title="Consulta de Procuraduria - Colombia" url="https://https://www.produraduria.gov.co/Pages/Generacion-de-antecedentes.aspx" />
           </div>   
   
         <div>
