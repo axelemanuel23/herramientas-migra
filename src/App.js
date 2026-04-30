@@ -850,6 +850,7 @@ const OutputCard = ({ title, url }) => (
   <a 
     href={url} 
     target="_blank"
+    rel="noopener noreferrer"
     className="block p-4 bg-white rounded-lg shadow transition-shadow transform hover:shadow-lg hover:scale-105"
   >
     <Link className="w-6 h-6 mb-2 text-gray-500" />
