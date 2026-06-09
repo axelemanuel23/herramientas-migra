@@ -402,7 +402,7 @@ const VisaRegime = () => {
     ["SEYCHELLES", "SYC", "V-AVE", "V", "V",""],
     ["SIERRA LEONA", "SLE", "V-AVE", "V", "V",""],
     ["SINGAPUR", "SGP", "-","-","-",""],
-    ["SIRIA", "SYR", "V","V","V",""],
+    ["SIRIA", "SYR", "V","V","V","SI"],
     ["SOMALIA", "SOM", "V", "V", "V",""],
     ["SRI LANKA", "LKA", "V","V","V",""],
     ["SUDAFRICA, REP. de", "ZAF", "-","-","-",""],
@@ -556,7 +556,8 @@ const VisaRegime = () => {
               <td>{visa[2]}</td>
               <td>{visa[3]}</td>
               <td>{visa[4]}</td>
-              <td>{visa[5]}</td>
+              <td>{ if(visa[5]){
+                <span key={index} className="tooltip-container">{visa[5]}<span className="tooltip-modal">{"Pais sensible"}</span></span>}}</td>
               </tr>
             ))}
           </tbody>
