@@ -556,9 +556,15 @@ const VisaRegime = () => {
               <td>{visa[2]}</td>
               <td>{visa[3]}</td>
               <td>{visa[4]}</td>
-              <td>{ if(visa[5]){
-                <span key={index} className="tooltip-container">{visa[5]}<span className="tooltip-modal">{"Pais sensible"}</span></span>}}</td>
-              </tr>
+              <td>
+                {visa[5] && (
+                  <span key={index} className="tooltip-container">
+                    {visa[5]}
+                    <span className="tooltip-modal">{"Pais sensible"}</span>
+                  </span>
+                )}
+              </td>
+            </tr>
             ))}
           </tbody>
         </table>
