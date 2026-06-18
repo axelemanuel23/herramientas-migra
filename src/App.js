@@ -559,8 +559,20 @@ const VisaRegime = () => {
               <td>
                 {visa[5] && (
                   <span key={index} className="tooltip-container">
-                    {visa[5]}
-                    <span className="tooltip-modal">{"Pais sensible"}</span>
+                    {switch(visa[5]){
+                      case "INFORMATIVO":
+                        {visa[5]}                      
+                        <span className="tooltip-modal">{"Informativo"}</span>
+                      break;
+                      case "CONSULTA":
+                        {visa[5]}                      
+                        <span className="tooltip-modal">{"Consulta"}</span>
+                      break;
+                      case "VERIFICACION":
+                        {visa[5]}                      
+                        <span className="tooltip-modal">{"Verificación"}</span>
+                      break;
+                    }}
                   </span>
                 )}
               </td>
