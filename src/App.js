@@ -497,6 +497,40 @@ const VisaRegime = () => {
     });
   };
 
+  const renderInfo = (tipo) => {
+  switch (tipo) {
+    case "INFORMATIVO":
+      return (
+        <span className="tooltip-modal informativo">
+          <h4>Informativo</h4>
+          <p>Información correspondiente a un registro informativo.</p>
+        </span>
+      );
+
+    case "CONSULTA":
+      return (
+        <span className="tooltip-modal consulta">
+          <h4>Consulta</h4>
+          <p>Información correspondiente a una consulta.</p>
+        </span>
+      );
+
+    case "VERIFICACION":
+      return (
+        <span className="tooltip-modal verificacion">
+          <h4>Verificación</h4>
+          <p>Información correspondiente a una verificación.</p>
+        </span>
+      );
+
+    default:
+      return (
+        <span className="tooltip-modal">
+          <p>Sin información adicional.</p>
+        </span>
+      );
+  }
+};
 
   return (
     <div className="p-4 bg-white rounded-lg shadow">
@@ -521,6 +555,22 @@ const VisaRegime = () => {
           display: none;
           box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
+
+        .informativo .tooltip-modal {
+          background: #dbeafe;
+          border-left: 4px solid #2563eb;
+        }
+
+        .consulta .tooltip-modal {
+          background: #fef3c7;
+          border-left: 4px solid #d97706;
+        }
+
+        .verificacion .tooltip-modal {
+          background: #dcfce7;
+          border-left: 4px solid #16a34a;
+        }
+        
         .tooltip-container:hover .tooltip-modal {
           display: block;
         }
@@ -557,30 +607,10 @@ const VisaRegime = () => {
               <td>{visa[3]}</td>
               <td>{visa[4]}</td>
               <td>
-                {visa[5] && (
-                  switch(visa[5]){
-                      case "INFORMATIVO":
-                        <span key={index} className="tooltip-container">   
-                        {visa[5]}                      
-                        <span className="tooltip-modal">{"Informativo"}</span>
-                      break;
-                      case "CONSULTA":
-                        <span key={index} className="tooltip-container">  
-                        {visa[5]}                      
-                        <span className="tooltip-modal">{"Consulta"}</span>
-                      break;
-                      case "VERIFICACION":
-                        <span key={index} className="tooltip-container">  
-                        {visa[5]}                      
-                        <span className="tooltip-modal">{"Verificación"}</span>
-                      break;
-                      case default:
-                        <span key={index} className="tooltip-container">  
-                        {"No"}
-                      <span className="tooltip-modal">{"Sin información adicional"}</span>
-                      break;
-                    }
-                )}
+                <span className=´tooltip-container ${visa[5]?.toLowerCase()}´>
+                  {visa[5] || "No"}
+                  {renderInfo(visa[5])}
+                </span>
               </td>
             </tr>
             ))}
