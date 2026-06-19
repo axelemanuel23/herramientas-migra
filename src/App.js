@@ -558,7 +558,7 @@ const VisaRegime = () => {
 
         .informativo .tooltip-modal {
           background: #dcfce7;
-          border-left: 4px solid #2563eb;
+          border-left: 4px solid #16a34a;
         }
 
         .consulta .tooltip-modal {
@@ -567,8 +567,8 @@ const VisaRegime = () => {
         }
 
         .verificacion .tooltip-modal {
-          background: #fef3c7;
-          border-left: 4px solid #16a34a;
+          background: #fed7aa;
+          border-left: 4px solid #ea580c;
         }
         
         .tooltip-container:hover .tooltip-modal {
