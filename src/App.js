@@ -556,17 +556,17 @@ const VisaRegime = () => {
         }
 
         .informativo .tooltip-modal {
-          background: #dbeafe;
+          background: #dcfce7;
           border-left: 4px solid #2563eb;
         }
 
         .consulta .tooltip-modal {
-          background: #fef3c7;
-          border-left: 4px solid #d97706;
+          background-color: #fecaca;
+          border-left: 4px solid #dc2626;
         }
 
         .verificacion .tooltip-modal {
-          background: #dcfce7;
+          background: #fef3c7;
           border-left: 4px solid #16a34a;
         }
         
