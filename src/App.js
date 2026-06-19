@@ -612,7 +612,7 @@ const VisaRegime = () => {
               <td>{visa[3]}</td>
               <td>{visa[4]}</td>
               <td>
-                <span className={"tooltip-container"}>
+                <span className={`tooltip-container ${visa[5]?.toLowerCase()}`}>
                   {visa[5] || "No"}
                   {renderInfo(visa[5])}
                 </span>
