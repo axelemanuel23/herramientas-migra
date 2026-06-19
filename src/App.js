@@ -524,7 +524,7 @@ const VisaRegime = () => {
 
     default:
       return (
-        <span className="tooltip-modal sinadicionales">
+        <span className="tooltip-modal">
           <p>Sin información adicional.</p>
         </span>
       );
@@ -569,11 +569,6 @@ const VisaRegime = () => {
         .verificacion .tooltip-modal {
           background: #fed7aa;
           border-left: 4px solid #ea580c;
-        }
-
-        .sinadicionales .tooltip-modal {
-          background: #dbeafe;
-          border-left: 4px solid #2563eb;
         }
         
         .tooltip-container:hover .tooltip-modal {
