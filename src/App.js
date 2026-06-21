@@ -503,11 +503,11 @@ const VisaRegime = () => {
         <span className="tooltip-modal informativo">
           <h4>Informativo</h4>
           <p>Requieren únicamente el envío de la planilla con carácter informativo, no siendo necesario aguardar respuesta del DIAC para la prosecución del trámite.</p>
-          <p>Destino (Hotel o direcciòn)</p>
-          <p>Permanencia (Tiempo de estadia)</p>
-          <p>Correo electronico</p>
-          <p>Telefono</p>
-          <p>Motivo del viaje</p>
+          <p>-Destino (Hotel o direcciòn)</p>
+          <p>-Permanencia (Tiempo de estadia)</p>
+          <p>-Correo electronico</p>
+          <p>-Telefono</p>
+          <p>-Motivo del viaje</p>
         </span>
       );
 
@@ -516,11 +516,11 @@ const VisaRegime = () => {
         <span className="tooltip-modal consulta">
           <h4>Consulta</h4>
           <p>Aquellos respecto de los cuales deberá remitirse al DIAC la planilla completa, debiendo aguardarse la respuesta correspondiente a fin de verificar la existencia de antecedentes o información de interés.</p>
-          <p>Destino (Hotel o direcciòn)</p>
-          <p>Permanencia (Tiempo de estadia)</p>
-          <p>Correo electronico</p>
-          <p>Telefono</p>
-          <p>Motivo del viaje</p>
+          <p>-Destino (Hotel o direcciòn)</p>
+          <p>-Permanencia (Tiempo de estadia)</p>
+          <p>-Correo electronico</p>
+          <p>-Telefono</p>
+          <p>-Motivo del viaje</p>
         </span>
       );
 
@@ -530,11 +530,11 @@ const VisaRegime = () => {
           <h4>Verificación</h4>
           <p>Unicamente mayores con pasaporte de su nacionalidad.</p>
           <p>En casos de alertas o inconsistencias en motivos de ingreso. Verificacion de antecedentes con DIAC y aguardar devolucion.</p>
-          <p>Destino (Hotel o direcciòn)</p>
-          <p>Permanencia (Tiempo de estadia)</p>
-          <p>Correo electronico</p>
-          <p>Telefono</p>
-          <p>Motivo del viaje</p>
+          <p>-Destino (Hotel o direcciòn)</p>
+          <p>-Permanencia (Tiempo de estadia)</p>
+          <p>-Correo electronico</p>
+          <p>-Telefono</p>
+          <p>-Motivo del viaje</p>
         </span>
       );
 
@@ -566,7 +566,7 @@ const VisaRegime = () => {
           border: 1px solid #ccc;
           padding: 8px;
           border-radius: 4px;
-          max-width: min(280px, 90vw);
+          max-width: 400px;
           white-space: normal;
           overflow-wrap: break-word;
           z-index: 10;
