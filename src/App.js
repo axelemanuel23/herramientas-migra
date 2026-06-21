@@ -566,7 +566,7 @@ const VisaRegime = () => {
           border: 1px solid #ccc;
           padding: 8px;
           border-radius: 4px;
-          max-width: 400px;
+          width: 350px;
           white-space: normal;
           overflow-wrap: break-word;
           z-index: 10;
