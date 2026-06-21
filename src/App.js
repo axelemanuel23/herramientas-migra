@@ -550,21 +550,6 @@ const VisaRegime = () => {
           display: none;
           box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
-        .tooltip-modal {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          background: #dbeafe;
-          border-left: 4px solid #2563eb;
-          border: 1px solid #ccc;
-          padding: 8px;
-          border-radius: 4px;
-          white-space: nowrap;
-          z-index: 10;
-          display: none;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-
         .informativo .tooltip-modal {
           background: #dcfce7;
           border-left: 4px solid #16a34a;
