@@ -534,6 +534,13 @@ const VisaRegime = () => {
   return (
     <div className="p-4 bg-white rounded-lg shadow">
     <style>{`
+      .tooltip-container {
+          position: relative;
+          display: inline-block;
+          cursor: help;
+          color: #0077cc;
+          font-weight: bold;
+        }
         .tooltip-modal {
           position: absolute;
           top: 100%;
