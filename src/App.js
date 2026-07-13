@@ -447,7 +447,7 @@ const VisaRegime = () => {
     { pais: "KAZAJSTAN", codigo: "KZJ", texto: " 30 DIAS EN 1 AÑO", textoaaclarar: "", aclaracion: "" },
     { pais: "MACEDONIA", codigo: "MKD", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
     { pais: "UCRANIA", codigo: "UKR", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
-    { pais: "HONG KONG con Pte. Británico B.N.O.", codigo: "GBN", texto: "B.N.O. ('BRITISH NATIONAL OVERSEAS') NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO, NEGOCIOS Y ARTÍSTICAS HASTA 
+    { pais: "HONG KONG con Pte. Británico B.N.O.", codigo: "GBN", texto: "B.N.O. (BRITISH NATIONAL OVERSEAS) NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO, NEGOCIOS Y ARTÍSTICAS HASTA 
 TREINTA (30) DÍAS", textoaaclarar: "TREINTA (30) DÍAS", aclaracion: "RTU 30 DIAS" },
     { pais: "FILIPINAS", codigo: "PHL", texto: " Diplomáticos y Oficiales sin visa si la permanencia no excediera los sesenta días o si estuviera en tránsito (Art. 1 del Acuerdo entre el Gobierno de la República Argentina y el Gobierno de la República de Filipinas sobre supresión de visas para titulares de pasaportes diplomáticos y oficiales, suscripto en Buenos Aires el 20/09/99 y que entró en vigor el 27/04/00)", textoaaclarar: "Diplomáticos y Oficiales", aclaracion: "60 dias de permanencia" },
     { pais: "MALASIA", codigo: "MAL", texto: " NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO HASTA TREINTA (30) DÍAS Y HASTA NOVENTA (90) DÍAS POR NEGOCIOS O DEPORTIVAS.", textoaaclarar: "TREINTA (30) DÍAS", aclaracion: "RTU 30 DIAS" },
