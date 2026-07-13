@@ -438,7 +438,7 @@ const VisaRegime = () => {
 
   const obs = [
     
-    { pais: "BULGARIA", codigo: "BGR", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "180 DIAS", aclaracion: "Se descuentan los dias que permanecio en el pais durante ese período" },
+    { pais: "BULGARIA", codigo: "BGR", texto: "Los nacionales de una de las Partes Contratantes titulares de pasaportes ordinarios vigentes, pueden entrar, pasar en tránsito, permancer y salir del territorio de la otra Parte Contratante sin visado por un plazo de hasta noventa (90) días dentro de un período de seis (6) meses, a contar desde la fecha de la primera entrada, a los efectos de realizar turismo, negocios, actividades deportivas, artísticas o cíentificas, siempre que éstas no sean renumeradas por la Parte receptora", textoaaclarar: "noventa (90) días dentro de un período de seis (6) meses", aclaracion: "Se descuentan los dias que permanecio en el pais durante ese período" },
     { pais: "FEDERACION RUSA (RUSIA)", codigo: "RUS", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "180 DIAS", aclaracion: "Se descuentan los dias que permanecio en el pais durante ese período" },
     { pais: "BIELORRUSIA", codigo: "BLR", texto: " 90 DIAS EN 1 AÑO", textoaaclarar: "1 AÑO", aclaracion: "Se descuentan los dias que permanecio en el pais durante ese período" },
     { pais: "GEORGIA", codigo: "GEO", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "180 DIAS", aclaracion: "Se descuentan los dias que permanecio en el pais durante ese período" },
@@ -447,6 +447,8 @@ const VisaRegime = () => {
     { pais: "KAZAJSTAN", codigo: "KZJ", texto: " 30 DIAS EN 1 AÑO", textoaaclarar: "", aclaracion: "" },
     { pais: "MACEDONIA", codigo: "MKD", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
     { pais: "UCRANIA", codigo: "UKR", texto: " 90 DIAS EN 180 DIAS", textoaaclarar: "", aclaracion: "" },
+    { pais: "HONG KONG con Pte. Británico B.N.O.", codigo: "GBN", texto: "B.N.O. ('BRITISH NATIONAL OVERSEAS') NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO, NEGOCIOS Y ARTÍSTICAS HASTA 
+TREINTA (30) DÍAS", textoaaclarar: "TREINTA (30) DÍAS", aclaracion: "RTU 30 DIAS" },
     { pais: "FILIPINAS", codigo: "PHL", texto: " Diplomáticos y Oficiales sin visa si la permanencia no excediera los sesenta días o si estuviera en tránsito (Art. 1 del Acuerdo entre el Gobierno de la República Argentina y el Gobierno de la República de Filipinas sobre supresión de visas para titulares de pasaportes diplomáticos y oficiales, suscripto en Buenos Aires el 20/09/99 y que entró en vigor el 27/04/00)", textoaaclarar: "Diplomáticos y Oficiales", aclaracion: "60 dias de permanencia" },
     { pais: "MALASIA", codigo: "MAL", texto: " NO REQUIERE VISA EN PASAPORTES COMUNES POR TURISMO HASTA TREINTA (30) DÍAS Y HASTA NOVENTA (90) DÍAS POR NEGOCIOS O DEPORTIVAS.", textoaaclarar: "TREINTA (30) DÍAS", aclaracion: "RTU 30 DIAS" },
     { pais: "RUMANIA", codigo: "ROU", texto: " Nota Nº 7630/05 LETRA: DIGAC-DDV-VIS del 05/12/2005 Los nacionales de Rumania y de la República Argentina, titulares de pasaportes comunes válidos, estarán exentos de visados para la entrada, tránsito y permanencia en el territorio de la otra Parte, ya sea con propósito de turismo o de negocios, por un término de hasta noventa (90) días, dentro de un período de seis meses a partir de la fecha de su primer ingreso", textoaaclarar: "7630/05", aclaracion: "90 dias de permanencia en un plazo de 6 meses" },
