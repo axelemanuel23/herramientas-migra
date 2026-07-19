@@ -674,7 +674,7 @@ const VisaRegime = () => {
         <span className="tooltip-modal verificacion">
           <h4>Verificación</h4>
           <p>*Unicamente mayores con pasaporte de su nacionalidad.</p>
-          <p>*Residentes de paises del mercosur no necesitan informacion adicional</p>
+          <p>*Residentes de paises del MERCOSUR no necesitan informacion adicional</p>
           <p>*En casos de alertas o inconsistencias en motivos de ingreso. Verificacion de antecedentes con DIAC y aguardar devolucion.</p>
           <p>-Destino (Hotel o direcciòn)</p>
           <p>-Permanencia (Tiempo de estadia)</p>
