@@ -647,7 +647,7 @@ const VisaRegime = () => {
       return (
         <span className="tooltip-modal informativo">
           <h4>Informativo</h4>
-          <p>Requieren únicamente el envío de la planilla con carácter informativo, no siendo necesario aguardar respuesta del DIAC para la prosecución del trámite.</p>
+          <p>*Requieren únicamente el envío de la planilla con carácter informativo, no siendo necesario aguardar respuesta del DIAC para la prosecución del trámite.</p>
           <p>-Destino (Hotel o direcciòn)</p>
           <p>-Permanencia (Tiempo de estadia)</p>
           <p>-Correo electronico</p>
@@ -660,7 +660,7 @@ const VisaRegime = () => {
       return (
         <span className="tooltip-modal consulta">
           <h4>Consulta</h4>
-          <p>Aquellos respecto de los cuales deberá remitirse al DIAC la planilla completa, debiendo aguardarse la respuesta correspondiente a fin de verificar la existencia de antecedentes o información de interés.</p>
+          <p>*Aquellos respecto de los cuales deberá remitirse al DIAC la planilla completa, debiendo aguardarse la respuesta correspondiente a fin de verificar la existencia de antecedentes o información de interés.</p>
           <p>-Destino (Hotel o direcciòn)</p>
           <p>-Permanencia (Tiempo de estadia)</p>
           <p>-Correo electronico</p>
@@ -673,9 +673,9 @@ const VisaRegime = () => {
       return (
         <span className="tooltip-modal verificacion">
           <h4>Verificación</h4>
-          <p>Unicamente mayores con pasaporte de su nacionalidad.</p>
-          <p>Residentes de paises del mercosur no necesitan informacion adicional</p>
-          <p>En casos de alertas o inconsistencias en motivos de ingreso. Verificacion de antecedentes con DIAC y aguardar devolucion.</p>
+          <p>*Unicamente mayores con pasaporte de su nacionalidad.</p>
+          <p>*Residentes de paises del mercosur no necesitan informacion adicional</p>
+          <p>*En casos de alertas o inconsistencias en motivos de ingreso. Verificacion de antecedentes con DIAC y aguardar devolucion.</p>
           <p>-Destino (Hotel o direcciòn)</p>
           <p>-Permanencia (Tiempo de estadia)</p>
           <p>-Correo electronico</p>
