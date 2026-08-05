@@ -1001,21 +1001,60 @@ const Categorization = () => {
 const Procedimientos = () => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   // Array de ejemplo para categorías
   const items = [
-    ["DATO 1"],
-  ];
+  {
+    titulo: "Visado estadounidense",
+    palabrasClave: ["visa", "eeuu", "usa", "estadounidense"],
+    pasos: [
+      "Verificar el tipo de visa y la vigencia.",
+      "Verificar validez en Intranet (issuing, surname, given name, birth date).",
+      "Si es válida, escanear la visa.",
+      'Categorizar en "Actuaciones y Visas" según los días correspondientes a la nacionalidad.'
+    ]
+  },
+  {
+    titulo: "Greencard",
+    palabrasClave: ["green", "greencard", "residencia"],
+    pasos: [
+      "Verificar la autenticidad y vigencia de la documentación.",
+      "Si es válida, escanear la credencial.",
+      'Categorizar en "Actuaciones y Visas" según los días correspondientes a la nacionalidad.'
+    ]
+  },
+  {
+    titulo: "Antecedentes colombianos",
+    palabrasClave: ["colombia", "antecedentes", "colombianos"],
+    pasos: [
+      "Verificar en las plataformas habilitadas por las autoridades colombianas.",
+      "Si no presenta irregularidades, liberar al pasajero."
+    ]
+  },
+  {
+    titulo: "Consultas países sensibles",
+    palabrasClave: ["sensibles", "diac", "incidente"],
+    pasos: [
+      "Generar un incidente para intervención del DIAC.",
+      "Destino (hotel o dirección).",
+      "Permanencia (tiempo de estadía).",
+      "Correo electrónico.",
+      "Teléfono.",
+      "Motivo del viaje.",
+      "Derivar al supervisor la documentación sin liberar al pasajero."
+    ]
+  }
+];
 
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     setSearch(value);
     if (value.length >= 3) {
-      const filtered = items.filter(item => 
-        item.some((itemValue) => 
-          String(itemValue).toLowerCase().includes(value)
-        )
-      );
+      const filtered = items.filter(proc =>
+        proc.titulo.toLowerCase().includes(value) ||
+        proc.palabrasClave.some(p => p.includes(value)
+      ));
       setResults(filtered);
       // Si no se encontraron resultados, establecer un valor por defecto
       if (filtered.length === 0) {
@@ -1044,21 +1083,32 @@ const Procedimientos = () => {
         />
       </div>
       {results.length > 0 && (
-        <table className="w-full mt-2">
-          <thead>
-            <tr>
-              <th className="text-left">Titulo1</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map((item, index) => (
-              <tr key={index}>
-              <td>{item[0]}</td>
-              </tr>
+    <div className="mt-3 space-y-2">
+        {results.map((proc, index) => (
+            <button
+                key={index}
+                onClick={() => setSelected(proc)}
+                className="w-full text-left p-3 rounded border hover:bg-purple-100 transition"
+            >
+                {proc.titulo}
+            </button>
+        ))}
+    </div>
+)}
+
+{selected && (
+    <div className="mt-4 p-4 border rounded-lg bg-gray-50 shadow-sm">
+        <h4 className="font-bold text-lg mb-3 text-purple-700">
+            {selected.titulo}
+        </h4>
+
+        <ol className="list-decimal ml-5 space-y-2">
+            {selected.pasos.map((paso, i) => (
+                <li key={i}>{paso}</li>
             ))}
-          </tbody>
-        </table>
-      )}
+        </ol>
+    </div>
+)}
       <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EfrcgdXy3XZHp0_0V3j_wIYBrcgfDgOD040nMXxoZXFooQ?e=M1axfU"}/>
     </div>
   );
