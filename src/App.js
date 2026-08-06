@@ -1009,19 +1009,19 @@ const Procedimientos = () => {
     titulo: "Visado estadounidense",
     palabrasClave: ["visa", "eeuu", "usa", "estadounidense"],
     pasos: [
-      "Verificar el tipo de visa y la vigencia.",
-      "Verificar validez en Intranet (issuing, surname, given name, birth date).",
+      "Verificar el tipo de visa ( B1 / B2 / J / O / P (P1-P2-P3) / E / H-1B) y la vigencia.",
+      "Verificar validez en Intranet (issuing (ciudad donde se emitió), surname (apellido), given name (nombre), birth date (fecha de nacimiento)).",
       "Si es válida, escanear la visa.",
-      'Categorizar en "Actuaciones y Visas" según los días correspondientes a la nacionalidad.'
+      'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoria y los días correspondientes a la nacionalidad.'
     ]
   },
   {
-    titulo: "Greencard",
+    titulo: "Greencard MEMO 05575830/2026",
     palabrasClave: ["green", "greencard", "residencia"],
     pasos: [
       "Verificar la autenticidad y vigencia de la documentación.",
       "Si es válida, escanear la credencial.",
-      'Categorizar en "Actuaciones y Visas" según los días correspondientes a la nacionalidad.'
+      'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoria y los días correspondientes a la nacionalidad.'
     ]
   },
   {
