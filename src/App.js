@@ -1036,7 +1036,7 @@ const Procedimientos = () => {
     titulo: "Consultas países sensibles",
     palabrasClave: ["sensibles", "diac", "incidente"],
     pasos: [
-      "Generar un incidente para intervención del DIAC.",
+      "Generar un incidente para intervención del DIAC con la siguiente informacion:",
       "Destino (hotel o dirección).",
       "Permanencia (tiempo de estadía).",
       "Correo electrónico.",
