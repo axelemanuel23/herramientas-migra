@@ -60,7 +60,7 @@ const DayCounter = () => {
           (exitDate > date.entry && exitDate < date.exit) ||
           (entryDate <= date.entry && exitDate >= date.exit)
         ) {
-          alert("No se permiten transitos solapados.");
+          alert("No se permiten tránsitos solapados.");
           return;
         }
       }
@@ -219,15 +219,22 @@ const DayCounter = () => {
 };
 
 
+// Normaliza texto para comparar sin distinguir mayúsculas ni tildes
+const normalizar = (texto) =>
+  String(texto).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
 const VisaRegime = () => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
   const [filteredObs, setFilteredObs] = useState([]);
+  const [procedimientosAplicables, setProcedimientosAplicables] = useState([]);
+  // Estado manual de los desplegables: { [id]: true/false }. Si no hay valor, rige el valor por defecto.
+  const [abiertos, setAbiertos] = useState({});
 
 
   // Array de ejemplo para visas
   const visas = [
-    ["AFGANISTAN", "AFG", "V","V","V","CONSULTA"],
+    ["AFGANISTÁN", "AFG", "V","V","V","CONSULTA"],
     ["ALBANIA", "ALB", "V-AVE", "-", "-",""],
     ["ALEMANIA (OCDE)", "DEU", "-", "-", "-",""],
     ["ANDORRA", "AND", "-", "-", "-",""],
@@ -243,8 +250,8 @@ const VisaRegime = () => {
     ["BAHREIN", "BHR", "V-AVE", "V", "V",""],
     ["BANGLADESH", "BGD", "V", "-", "-","INFORMATIVO"],
     ["BARBADOS", "BRB", "-", "-", "-",""],
-    ["BELARUS (BIELORRUSIA)", "BLR", "*Ver Obs/V", "-", "-",""],
-    ["BELGICA (OCDE)", "BEL", "-", "-", "-",""],
+    ["BELARÚS (BIELORRUSIA)", "BLR", "*Ver Obs/V", "-", "-",""],
+    ["BÉLGICA (OCDE)", "BEL", "-", "-", "-",""],
     ["BELICE", "BLZ", "V-AVE", "-", "-",""],
     ["BENIN", "BEN", "V-AVE", "V", "V",""],
     ["BHUTAN (BUTÁN)", "BTN", "V-AVE", "V", "V",""],
@@ -258,8 +265,8 @@ const VisaRegime = () => {
     ["BURUNDI", "BDI", "V-AVE", "V", "V",""],
     ["CABO VERDE", "CPV", "V-AVE", "-", "-",""],
     ["CAMBOYA (KAMPUCHEA)", "KHM", "V-AVE", "V", "V",""],
-    ["CAMERUN", "CMR", "V-AVE", "V", "V",""],
-    ["CANADA (OCDE)", "CAN", "-", "V", "V",""],
+    ["CAMERÚN", "CMR", "V-AVE", "V", "V",""],
+    ["CANADÁ (OCDE)", "CAN", "-", "V", "V",""],
     ["COLOMBIA", "COL", "-", "-", "-","VERIFICACION"],
     ["COMORES, ISLAS", "COM", "V", "V", "V","CONSULTA"],
     ["CONGO, REP. DEMOC. del (ex Zaire)", "COD", "V-AVE", "V", "V",""],
@@ -269,7 +276,7 @@ const VisaRegime = () => {
     ["COSTA DE MARFIL (CÔTE D'IVOIRE)", "CIV", "V-AVE", "V", "V",""],
     ["COSTA RICA", "CRI", "-", "-", "-",""],
     ["CROACIA", "HRV", "-", "-", "-",""],
-    ["CUBA", "CUB", "V-AVE", "-", "-", "-",""],
+    ["CUBA", "CUB", "V-AVE", "-", "-",""],
     ["CHAD", "TCD", "V", "V", "V",""],
     ["CHILE (OCDE)", "CHL", "-", "-", "-",""],
     ["CHINA, REP. POPULAR", "CHN", "*Ver Obs","-","-",""],
@@ -280,7 +287,7 @@ const VisaRegime = () => {
     ["ECUADOR", "ECU", "-", "-", "-",""],
     ["EGIPTO", "EGY", "*Ver Obs/V", "-", "-","INFORMATIVO"],
     ["EL SALVADOR", "SLV", "-", "-", "-",""],
-    ["EMIRATOS ARABES UNIDOS", "ARE", "-", "-", "-",""],
+    ["EMIRATOS ÁRABES UNIDOS", "ARE", "-", "-", "-",""],
     ["ERITREA", "ERI", "V-AVE", "V", "V",""],
     ["ESLOVENIA (OCDE)", "SVN", "-", "-", "-",""],
     ["ESPAÑA (OCDE)", "ESP", "-", "-", "-",""],
@@ -288,7 +295,7 @@ const VisaRegime = () => {
     ["ESTONIA (OCDE)", "EST", "-", "-", "-",""],
     ["ESWATINI", "SWZ", "V-AVE", "V", "V",""],
     ["ETIOPIA", "ETH", "V-AVE", "V", "V",""],
-    ["FEDERACION RUSA", "RUS", "*Ver Obs", "-", "-",""],
+    ["FEDERACIÓN RUSA", "RUS", "*Ver Obs", "-", "-",""],
     ["FIJI", "FJI", "-", "-", "-",""],
     ["FILIPINAS", "PHL", "V-AVE", "-", "-","INFORMATIVO"],
     ["FINLANDIA (OCDE)", "FIN", "-", "-", "-",""],
@@ -304,11 +311,11 @@ const VisaRegime = () => {
     ["GUINEA-BISSAU", "GNB", "V-AVE", "V", "V",""],
     ["GUINEA ECUATORIAL", "GNQ", "V-AVE", "V", "V",""],
     ["GUYANA", "GUY", "-", "-", "-",""],
-    ["HAITI", "HTI", "V", "-", "-",""],
+    ["HAITÍ", "HTI", "V", "-", "-",""],
     ["HONDURAS", "HND", "-", "-", "-",""],
     ["HONG KONG con Pte. Británico B.N.O.", "GBN", "-", "-", "-",""],
     ["HONG KONG con nuevo Pte. S.A.R.", "HKG", "-", "-", "-",""],
-    ["HUNGRIA (OCDE)", "HUN", "-", "-", "-",""],
+    ["HUNGRÍA (OCDE)", "HUN", "-", "-", "-",""],
     ["INDIA", "IND", "V-AVE/*Ver Obs*", "-", "-","INFORMATIVO"],
     ["INDONESIA", "IDN", "V-AVE/*Ver Obs", "-", "-","CONSULTA"],
     ["INTERPOL", "XPO", "V", "-", "-",""],
@@ -319,18 +326,18 @@ const VisaRegime = () => {
     ["ISRAEL (OCDE)", "ISR", "-", "-", "-",""],
     ["ITALIA (OCDE)", "ITA", "-", "-", "-",""],
     ["JAMAICA", "JAM", "-", "-", "-",""],
-    ["JAPON (OCDE)", "JPN", "-", "-", "-","CONSULTA"],
+    ["JAPÓN (OCDE)", "JPN", "-", "-", "-","CONSULTA"],
     ["JORDANIA", "JOR", "V", "V", "V",""],
-    ["KAZAJSTAN", "KAZ", "*Ver Obs/V", "90 Dias", "-",""],
+    ["KAZAJSTÁN", "KAZ", "*Ver Obs/V", "90 Días", "-",""],
     ["KENYA", "KEN", "V-AVE", "V", "V",""],
-    ["KIRGUISTAN", "KGZ", "V", "V", "V","CONSULTA"],
+    ["KIRGUISTÁN", "KGZ", "V", "V", "V","CONSULTA"],
     ["KIRIBATI", "KIR", "V-AVE", "V", "V",""],
     ["KOSOVO", "XKK", "C/V", "x", "x",""],
     ["KUWAIT", "KWT", "V", "V", "V","INFORMATIVO"],
     ["LAOS (LAO)", "LAO", "V-AVE", "V", "V",""],
     ["LESOTHO", "LSO", "V-AVE", "V", "V",""],
     ["LETONIA (LATVIA) (OCDE)", "LVA", "-", "-", "-",""],
-    ["LIBANO", "LBN", "V", "V", "V","CONSULTA"],
+    ["LÍBANO", "LBN", "V", "V", "V","CONSULTA"],
     ["LIBERIA", "LBR", "V", "V", "V","CONSULTA"],
     ["LIBIA", "LBY", "V", "V", "V","CONSULTA"],
     ["LIECHTENSTEIN", "LIE", "-", "-", "-",""],
@@ -342,14 +349,14 @@ const VisaRegime = () => {
     ["MALASIA", "MYS", "*OBS","-","-",""],
     ["MALAWI", "MWI", "V-AVE", "V", "V",""],
     ["MALDIVAS", "MDV", "V-AVE", "V", "V",""],
-    ["MALI", "MLI", "V", "V", "V","CONSULTA"],
+    ["MALÍ", "MLI", "V", "V", "V","CONSULTA"],
     ["MALTA, REPÚBLICA DE", "MLT", "-","-","-",""],
     ["MALTA, Soberana Orden Militar de (Dto. N° 285/98)", "XOM", "x","-","-",""],
     ["MARSHALL, ISLAS", "MHL", "V-AVE", "V", "V",""],
     ["MARRUECOS", "MAR", "V","-","-","INFORMATIVO"],
     ["MAURICIO", "MUS", "V-AVE", "V", "V",""],
     ["MAURITANIA", "MRT", "V", "V", "V","CONSULTA"],
-    ["MEXICO (OCDE)", "MEX", "-","-","-",""],
+    ["MÉXICO (OCDE)", "MEX", "-","-","-",""],
     ["MICRONESIA, Estados Federados de", "FSM", "V", "V", "V",""],
     ["MOLDOVA", "MDA", "V-AVE", "V", "V",""],
     ["MONACO", "MCO", "-","-","-",""],
@@ -358,16 +365,16 @@ const VisaRegime = () => {
     ["MOZAMBIQUE", "MOZ", "V-AVE","-","-",""],
     ["MYANMAR (ex BIRMANIA)", "MMR", "V-AVE", "V", "V",""],
     ["NAMIBIA", "NAM", "V-AVE", "V", "V",""],
-    ["NAURU", "NRU", "YAREN", "V-AVE", "V", "V",""],
-    ["NEPAL", "NPL", "KATMANDÚ", "V-AVE", "V", "V",""],
+    ["NAURU", "NRU", "V-AVE", "V", "V",""],
+    ["NEPAL", "NPL", "V-AVE", "V", "V",""],
     ["NICARAGUA", "NIC",  "-", "-", "-",""],
-    ["NIGER", "NER",  "V-AVE", "V", "V",""],
+    ["NÍGER", "NER",  "V-AVE", "V", "V",""],
     ["NIGERIA", "NGA", "V", "V", "V","CONSULTA"],
     ["NORUEGA (OCDE)", "NOR",  "-", "-", "-",""],
     ["NUEVA ZELANDIA (OCDE)", "NZL", "-", "-", "-",""],
-    ["OMAN", "OMN", "MASCATE", "V-AVE", "V", "V",""],
-    ["PAISES BAJOS (OCDE)", "NLD", "-", "-", "-",""],
-    ["PAKISTAN", "PAK", "V", "-", "-","CONSULTA"],
+    ["OMAN", "OMN", "V-AVE", "V", "V",""],
+    ["PAÍSES BAJOS (OCDE)", "NLD", "-", "-", "-",""],
+    ["PAKISTÁN", "PAK", "V", "-", "-","CONSULTA"],
     ["PALAU", "PLW", "V-AVE", "V", "V",""],
     ["PALESTINA", "PSE", "V", "V", "V","CONSULTA"],
     ["PANAMA", "PAN", "-", "-", "-",""],
@@ -379,20 +386,20 @@ const VisaRegime = () => {
     ["PUERTO RICO", "PRI", "-", "V", "V",""],
     ["QATAR", "QAT", "-", "-", "-",""],
     ["REINO UNIDO de GRAN BRETAÑA e IRLANDA DEL NORTE (OCDE)", "GBR", "-", "-", "-",""],
-    ["REPUBLICA ÁRABE SAHARAUI DEMOCRÁTICA (ex SAHARA OCCIDENTAL)", "ESH", "C/V","x","x",""],
-    ["REPUBLICA CENTRO AFRICANA", "CAF", "V-AVE", "V", "V",""],
-    ["REPUBLICA CHECA (OCDE)", "CZE", "-","-","-",""],
-    ["REPUBLICA DOMINICANA", "DOM", "V*", "-","-",""],
-    ["REPUBLICA DOMINICANA", "DOM", "*Ver Obs", "-","-",""],
-    ["REPUBLICA ESLOVACA (OCDE)", "SVK", "-","-","-",""],
+    ["REPÚBLICA ÁRABE SAHARAUI DEMOCRÁTICA (ex Sahara Occidental)", "ESH", "C/V","x","x",""],
+    ["REPÚBLICA CENTRO AFRICANA", "CAF", "V-AVE", "V", "V",""],
+    ["REPÚBLICA CHECA (OCDE)", "CZE", "-","-","-",""],
+    ["REPÚBLICA DOMINICANA", "DOM", "V*", "-","-",""],
+    ["REPÚBLICA DOMINICANA", "DOM", "*Ver Obs", "-","-",""],
+    ["REPÚBLICA ESLOVACA (OCDE)", "SVK", "-","-","-",""],
     ["REPUBLICA MOLDAVA NISTRINA", "x", "-","-","-",""],
     ["RUMANIA", "ROU", "*Ver Obs","-","-",""],
     ["RWANDA / RUANDA", "RWA", "V-AVE", "V", "V",""],  
     ["SALOMON, ISLAS", "SLB", "V-AVE", "V", "V",""],
     ["SAMOA OCCIDENTAL", "WSM", "V-AVE", "V", "V",""],
-    ["SAN CRISTOBAL Y NEVIS", "KNA", "-","-","-",""],
+    ["SAN CRISTÓBAL Y NEVIS", "KNA", "-","-","-",""],
     ["SAN MARINO", "SMR", "-","-","-",""],
-    ["SANTA LUCIA", "LCA", "-","-","-",""],
+    ["SANTA LUCÍA", "LCA", "-","-","-",""],
     ["SANTA SEDE (ver VATICANO)", "VAT","x", "-","-",""],
     ["SANTO TOME Y PRÍNCIPE", "STP", "V-AVE", "V", "V",""],
     ["SAN VICENTE Y LAS GRANADINAS", "VCT", "-","-","-",""],
@@ -402,31 +409,31 @@ const VisaRegime = () => {
     ["SIERRA LEONA", "SLE", "V-AVE", "V", "V",""],
     ["SINGAPUR", "SGP", "-","-","-",""],
     ["SIRIA", "SYR", "V","V","V","CONSULTA"],
-    ["SOMALIA", "SOM", "V", "V", "V","CONSULTA"],
+    ["SOMALÍA", "SOM", "V", "V", "V","CONSULTA"],
     ["SRI LANKA", "LKA", "V","V","V","CONSULTA"],
-    ["SUDAFRICA, REP. de", "ZAF", "-","-","-",""],
-    ["SUDAN, REPÚBLICA DEL", "SDN", "V", "V", "V","CONSULTA"],
+    ["SUDÁFRICA, REP. de", "ZAF", "-","-","-",""],
+    ["SUDÁN, REPÚBLICA DEL", "SDN", "V", "V", "V","CONSULTA"],
     ["SUDAN DEL SUR (Dto. Nº 1.072/11)", "SSD", "V", "V", "V","CONSULTA"],
     ["SUECIA (OCDE)", "SWE", "-","-","-",""],
     ["SUIZA (OCDE)", "CHE", "-","-","-",""],
     ["SURINAME", "SUR", "-","-","-",""],
     ["SWAZILANDIA (VER ESWATINI) ", "SWZ", "V-AVE", "V", "V",""],
     ["TAILANDIA", "THA", "-","-","-",""],
-    ["TAIWAN", "TWN", "C/V - AVE","x","x",""],
+    ["TAIWÁN", "TWN", "C/V - AVE","x","x",""],
     ["TANZANIA", "TZA", "V-AVE", "V", "V",""],
-    ["TAYIKISTAN", "TJK", "V", "V", "V","CONSULTA"],
+    ["TAYIKISTÁN", "TJK", "V", "V", "V","CONSULTA"],
     ["TIMOR-LESTE (ex Timor Oriental)", "TLS", "V", "V", "V","CONSULTA"],
     ["TOGO", "TGO", "V-AVE", "V", "V",""],
     ["TONGA", "TON", "V-AVE", "V", "V",""],
     ["TRINIDAD Y TOBAGO", "TTO", "-","-","-",""],
     ["TUNEZ", "TUN", "V", "-","-","INFORMATIVO"],
-    ["TURKMENISTAN", "TKM", "V", "V", "V","CONSULTA"],
-    ["TURQUIA (OCDE)", "TUR", "-","-","-",""],
+    ["TURKMENISTÁN", "TKM", "V", "V", "V","CONSULTA"],
+    ["TURQUÍA (OCDE)", "TUR", "-","-","-",""],
     ["TUVALU", "TUV", "V-AVE", "V", "V",""],
     ["UCRANIA", "UKR", "*Ver Obs","-","-",""],
     ["UGANDA", "UGA", "V-AVE", "V", "V",""],
     ["URUGUAY", "URY", "-","-","-",""],
-    ["UZBEKISTAN", "UZB", "V", "V", "V","CONSULTA"],
+    ["UZBEKISTÁN", "UZB", "V", "V", "V","CONSULTA"],
     ["VANUATU", "VUT", "V-AVE", "V", "V",""],
     ["VATICANO (ver SANTA SEDE)", "VAT", "-","x","x",""],
     ["VENEZUELA", "VEN", "-","-","-","VERIFICACION"],
@@ -582,28 +589,132 @@ const VisaRegime = () => {
   { pais: "YEMEN", codigo: "YEM", texto: "Requiere visa en todas las categorías migratorias, con consulta consular previa al organismo de seguridad competente." },
   ];
 
+  // Datos que se piden a la planilla de países sensibles
+  const datosPlanilla = [
+    "Destino (hotel o dirección).",
+    "Permanencia (tiempo de estadía).",
+    "Correo electrónico.",
+    "Teléfono.",
+    "Motivo del viaje."
+  ];
+
+  // Procedimientos vigentes. Cada uno se dispara por:
+  //  - codigo: lista de códigos de país (columna 2 de `visas`), o
+  //  - sensibilidad: valor de la última columna de `visas` (CONSULTA / INFORMATIVO / VERIFICACION).
+  // Los que se disparan por sensibilidad se muestran desplegados automáticamente.
+  const procedimientos = [
+    {
+      id: "sensible-verificacion",
+      titulo: "País sensible: Verificación",
+      sensibilidad: "VERIFICACION",
+      pasos: [
+        "Aplica únicamente a mayores con pasaporte de su nacionalidad.",
+        "Residentes de países del MERCOSUR no necesitan información adicional.",
+        { texto: "En casos de alertas o inconsistencias en los motivos de ingreso, verificar antecedentes con el DIAC y aguardar la devolución. Datos a informar:", items: datosPlanilla }
+      ]
+    },
+    {
+      id: "sensible-consulta",
+      titulo: "País sensible: Consulta DIAC",
+      sensibilidad: "CONSULTA",
+      pasos: [
+        { texto: "Generar un incidente para intervención del DIAC con la planilla completa, con la siguiente información:", items: datosPlanilla },
+        "Aguardar la respuesta del DIAC para verificar la existencia de antecedentes o información de interés.",
+        "Derivar al supervisor la documentación sin liberar al pasajero."
+      ]
+    },
+    {
+      id: "sensible-informativo",
+      titulo: "País sensible: Informativo",
+      sensibilidad: "INFORMATIVO",
+      pasos: [
+        { texto: "Enviar la planilla con carácter informativo, con la siguiente información:", items: datosPlanilla },
+        "No es necesario aguardar respuesta del DIAC para continuar con el trámite."
+      ]
+    },
+    {
+      id: "visado-estadounidense",
+      titulo: "Visado estadounidense",
+      codigo: ["CHN", "IND", "DOM"],
+      pasos: [
+        "Verificar el tipo de visa ( B1 / B2 / J / O / P (P1-P2-P3) / E / H-1B) y la vigencia.",
+        "Verificar validez en Intranet (issuing (ciudad donde se emitió), surname (apellido), given name (nombre), birth date (fecha de nacimiento)).",
+        "Si es válida, escanear la visa.",
+        'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoría y los días correspondientes a la nacionalidad.'
+      ]
+    },
+    {
+      id: "greencard",
+      titulo: "Greencard MEMO 05575830/2026",
+      codigo: ["CHN", "IND", "DOM"],
+      pasos: [
+        "Verificar la autenticidad y vigencia de la documentación.",
+        "Si es válida, escanear la credencial.",
+        'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoría y los días correspondientes a la nacionalidad.'
+      ]
+    },
+    {
+      id: "antecedentes-colombianos",
+      titulo: "Antecedentes colombianos",
+      codigo: ["COL"],
+      pasos: [
+        "Verificar en las plataformas habilitadas por las autoridades colombianas.",
+        "Si no presenta irregularidades, liberar al pasajero."
+      ]
+    }
+  ];
+
+  // ¿Este procedimiento aplica a este país? (visa = fila del array `visas`)
+  const procedimientoAplica = (proc, visa) => {
+    const codigoPais = visa[1];
+    const sensibilidad = visa[5];
+    if (proc.codigo && proc.codigo.includes(codigoPais)) return true;
+    if (proc.sensibilidad && proc.sensibilidad === sensibilidad) return true;
+    return false;
+  };
+
+  // Recorre los países encontrados y devuelve los procedimientos que aplican,
+  // agrupados por procedimiento (sin repetir) junto con los países a los que aplica.
+  const obtenerProcedimientos = (paises) =>
+    procedimientos
+      .map((proc) => ({
+        proc,
+        paises: [...new Set(paises.filter((visa) => procedimientoAplica(proc, visa)).map((visa) => visa[0]))]
+      }))
+      .filter((item) => item.paises.length > 0);
+
+  // Los de países sensibles arrancan abiertos; el resto, cerrados
+  const estaAbierto = (proc) => abiertos[proc.id] ?? Boolean(proc.sensibilidad);
+
+  const alternarProcedimiento = (proc) => {
+    setAbiertos((prev) => ({ ...prev, [proc.id]: !(prev[proc.id] ?? Boolean(proc.sensibilidad)) }));
+  };
+
   const handleSearch = (e) => {
-  const value = e.target.value.toLowerCase();
-  setSearch(value);
+    const texto = e.target.value;
+    const value = normalizar(texto);
+    setSearch(texto);
+    setAbiertos({});
 
-  if (value.length >= 3) {
-    const filtered = visas.filter(visa =>
-      visa.some(itemValue =>
-        String(itemValue).toLowerCase().includes(value)
-      )
-    );
-    setResults(filtered);
+    if (value.length >= 3) {
+      const filtered = visas.filter((visa) =>
+        visa.some((itemValue) => normalizar(itemValue).includes(value))
+      );
+      setResults(filtered);
 
-    const obsFiltradas = obs.filter(o =>
-      o.pais.toLowerCase().includes(value) ||
-      o.codigo.toLowerCase().includes(value)
-    );
-    setFilteredObs(obsFiltradas);
-  } else {
-    setResults([]);
-    setFilteredObs([]);
-  }
-};
+      const obsFiltradas = obs.filter((o) =>
+        normalizar(o.pais).includes(value) ||
+        normalizar(o.codigo).includes(value)
+      );
+      setFilteredObs(obsFiltradas);
+
+      setProcedimientosAplicables(obtenerProcedimientos(filtered));
+    } else {
+      setResults([]);
+      setFilteredObs([]);
+      setProcedimientosAplicables([]);
+    }
+  };
 
   const renderTextoConTooltip = (texto, palabraClave, aclaracion) => {
     if (!palabraClave || !texto.includes(palabraClave)) return texto;
@@ -622,58 +733,6 @@ const VisaRegime = () => {
       );
     });
   };
-
-  const renderInfo = (tipo) => {
-  switch (tipo) {
-    case "INFORMATIVO":
-      return (
-        <span className="tooltip-modal informativo">
-          <h4>Informativo</h4>
-          <p>*Requieren únicamente el envío de la planilla con carácter informativo, no siendo necesario aguardar respuesta del DIAC para la prosecución del trámite.</p>
-          <p>-Destino (Hotel o direcciòn)</p>
-          <p>-Permanencia (Tiempo de estadia)</p>
-          <p>-Correo electronico</p>
-          <p>-Telefono</p>
-          <p>-Motivo del viaje</p>
-        </span>
-      );
-
-    case "CONSULTA":
-      return (
-        <span className="tooltip-modal consulta">
-          <h4>Consulta</h4>
-          <p>*Aquellos respecto de los cuales deberá remitirse al DIAC la planilla completa, debiendo aguardarse la respuesta correspondiente a fin de verificar la existencia de antecedentes o información de interés.</p>
-          <p>-Destino (Hotel o direcciòn)</p>
-          <p>-Permanencia (Tiempo de estadia)</p>
-          <p>-Correo electronico</p>
-          <p>-Telefono</p>
-          <p>-Motivo del viaje</p>
-        </span>
-      );
-
-    case "VERIFICACION":
-      return (
-        <span className="tooltip-modal verificacion">
-          <h4>Verificación</h4>
-          <p>*Unicamente mayores con pasaporte de su nacionalidad.</p>
-          <p>*Residentes de paises del MERCOSUR no necesitan informacion adicional</p>
-          <p>*En casos de alertas o inconsistencias en motivos de ingreso. Verificacion de antecedentes con DIAC y aguardar devolucion.</p>
-          <p>-Destino (Hotel o direcciòn)</p>
-          <p>-Permanencia (Tiempo de estadia)</p>
-          <p>-Correo electronico</p>
-          <p>-Telefono</p>
-          <p>-Motivo del viaje</p>
-        </span>
-      );
-
-    default:
-      return (
-        <span className="tooltip-modal">
-          <p>Sin información adicional.</p>
-        </span>
-      );
-  }
-};
 
   return (
     <div className="p-4 bg-white rounded-lg shadow">
@@ -701,21 +760,6 @@ const VisaRegime = () => {
           display: none;
           box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
-        .informativo .tooltip-modal {
-          background: #dcfce7;
-          border-left: 4px solid #16a34a;
-        }
-
-        .consulta .tooltip-modal {
-          background-color: #fecaca;
-          border-left: 4px solid #dc2626;
-        }
-
-        .verificacion .tooltip-modal {
-          background: #fed7aa;
-          border-left: 4px solid #ea580c;
-        }
-        
         .tooltip-container:hover .tooltip-modal {
           display: block;
         }
@@ -735,12 +779,11 @@ const VisaRegime = () => {
         <table className="w-full mt-2">
           <thead>
             <tr>
-              <th className="text-left">Pais</th>
-              <th className="text-left">Codigo</th>
+              <th className="text-left">País</th>
+              <th className="text-left">Código</th>
               <th className="text-left">Turista</th>
-              <th className="text-left">Diplomatico</th>
+              <th className="text-left">Diplomático</th>
               <th className="text-left">Oficial</th>
-              <th className="text-left">Sensible?</th>
             </tr>
           </thead>
           <tbody>
@@ -751,12 +794,6 @@ const VisaRegime = () => {
               <td>{visa[2]}</td>
               <td>{visa[3]}</td>
               <td>{visa[4]}</td>
-              <td>
-                <span className={`tooltip-container ${visa[5]?.toLowerCase()}`}>
-                  {visa[5] || "No"}
-                  {renderInfo(visa[5])}
-                </span>
-              </td>
             </tr>
             ))}
           </tbody>
@@ -774,6 +811,51 @@ const VisaRegime = () => {
     </ul>
   </div>
 )}
+      {procedimientosAplicables.length > 0 && (
+        <div className="mt-4">
+          <h4 className="text-md font-semibold">Procedimientos vigentes</h4>
+          <div className="mt-2 space-y-2">
+            {procedimientosAplicables.map(({ proc, paises }) => {
+              const abierto = estaAbierto(proc);
+              return (
+                <div key={proc.id} className="border rounded-lg">
+                  <button
+                    onClick={() => alternarProcedimiento(proc)}
+                    aria-expanded={abierto}
+                    className="w-full text-left p-3 rounded-lg hover:bg-purple-100 transition flex justify-between items-center gap-3"
+                  >
+                    <span>
+                      <span className="block font-medium">{proc.titulo}</span>
+                      <span className="block text-xs text-gray-500">Aplica a: {paises.join(', ')}</span>
+                    </span>
+                    <span className="text-gray-500">{abierto ? '▲' : '▼'}</span>
+                  </button>
+                  {abierto && (
+                    <div className="p-4 border-t bg-gray-50">
+                      <ol className="list-decimal ml-5 space-y-2">
+                        {proc.pasos.map((paso, i) => (
+                          <li key={i}>
+                            {typeof paso === 'string' ? paso : (
+                              <>
+                                {paso.texto}
+                                <ul className="list-disc ml-5 mt-1">
+                                  {paso.items.map((item, j) => (
+                                    <li key={j}>{item}</li>
+                                  ))}
+                                </ul>
+                              </>
+                            )}
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
       <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/IQCfOjMp3qFxRqUKQdNPtD0iAQYeC5INjdYX_rxKiRIhRGw?e=ndecy1"} />
     </div>
   );
@@ -786,25 +868,25 @@ const Agreements = () => {
   // Array de ejemplo para convenios
   const convenios = [
     {
-      name: "Tratado de Facilitacion Turistica",
+      name: "Tratado de Facilitación Turística",
       documentCountry: ["BRASIL"],
       beneficiaryCountry: [""],
-      detail: "Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas.",
-      info: ["CAT: TFT","PERM: 3 DIAS"],
+      detail: "“Acuerdo Sobre Facilitación Turística entre la República Argentina y la República Federativa del Brasil” suscripto en Brasilia el 18/11/09, que entró en vigor el 18/12/09. Serán beneficiarios del presente Acuerdo, los nacionales y los residentes permanentes y temporarios de las Partes que crucen la frontera que vincula directamente a ambos países por el Puente Internacional Tancredo Neves. Podrán transitar dentro de los límites del área geográfica denominada -Corredor Turístico Iguazú- por el plazo de hasta SETENTA Y DOS (72) horas.",
+      info: ["CAT: TFT","PERM: 3 DÍAS"],
     },
     {
       name: "Argentina - Chile",
       documentCountry: ["Chile"],
       beneficiaryCountry: [""],
       detail: "-Convenio de Tránsito de Pasajeros- del 30/10/47, modificado en Buenos Aires el 02/08/91, que entró en vigor el 30/09/93 y vuelto a modificar en marzo de 2012. En virtud de dicho acuerdo, los residentes permanentes en uno y otro país podrán ingresar al otro con la sola presentación del documento de identidad adquirido por tal condición, aun cuando por su nacionalidad necesitarán visa consular. Es decir que un extranjero de un tercer país que requiera visa por su nacionalidad en argentina, si es residente permanente en chile podrá ingresar con su cédula de identidad de residente permanente. Y a condición de reciprocidad los residentes en argentina con DNI.",
-      info: ["RTU","PERM: 90 DIAS"],
+      info: ["RTU","PERM: 90 DÍAS"],
     },
     {
       name: "San Borja",
       documentCountry: ["Brasil"],
       beneficiaryCountry: ["Brasil"],
-      detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no,tendrán acceso sin visa al territorio de la otra Parte, para estadíasinferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen",
-      info: ["CAT: TRANSITORIA - ESPECIALES A JUICIO DE LA DNM","PERM: 90 DIAS"],
+      detail: "DIGAC-VISAS Nº 1313/2000 del 24/03/2000). Acuerdo entre la República Argentina y el Gobierno de la República Federativa del Brasil sobre Exención de Visados, suscripto en SAO BORJA el 9 de diciembre de 1997, que entró en vigor el 22/04/2000. El presente acuerdo se aplica a las personas pertenecientes a las siguientes categorías: artistas, profesores, científicos, deportistas, empresarios u hombres de negocios, periodistas, profesionales y técnicos especializados. Se entiende por técnicos especializados a los trabajadores con capacitación otorgada a nivel secundario, terciario no universitario o por una entidad de capacitación laboral. Los nacionales de cualquiera de las Partes, mencionados en el Artículo 1 del presente Acuerdo y a fin de desarrollar las actividades de las categorías respectivas, remuneradas o no, tendrán acceso sin visa al territorio de la otra Parte, para estadías inferiores o iguales a NOVENTA (90) días, prorrogable por igual período, con la sola presentación de un documento identificatorio o de viaje válido en el país de origen",
+      info: ["CAT: TRANSITORIA - ESPECIALES A JUICIO DE LA DNM","PERM: 90 DÍAS"],
     }
   ];
 
@@ -846,9 +928,9 @@ const Agreements = () => {
               <tr className="bg-gray-100 text-left">
                 <th className="p-2 border-b font-medium">Nombre del Convenio</th>
                 <th className="p-2 border-b font-medium">País Documento</th>
-                <th className="p-2 border-b font-medium">Paises Beneficiados</th>
+                <th className="p-2 border-b font-medium">Países Beneficiados</th>
                 <th className="p-2 border-b font-medium">Detalle</th>
-                <th className="p-2 border-b font-medium">Informaciòn</th>
+                <th className="p-2 border-b font-medium">Información</th>
               </tr>
             </thead>
             <tbody>
@@ -891,19 +973,19 @@ const Categorization = () => {
     ["BOLIVIA", "BOL", "NO" ,"ARE 180","ARE 180","AR"],
     ["PERU", "PER", "NO" ,"ARE 180","ARE 180","AR"],
     ["VENEZUELA", "VEN", "NO" ,"ARE 180","ARE 180","AR"],
-    ["CHILE", "CHL", "SI" ,"RTU 90","RTU 90","AR"],
-    ["COLOMBIA", "COL", "SI" ,"RTU 90","RTU 90","AR"],
-    ["ECUADOR", "ECU", "SI" ,"RTU 90","RTU 90","AR"],
-    ["ESPAÑA", "ESP", "SI" ,"-","RTU 90","-"],
-    ["ITALIA", "ITA", "SI" ,"-","RTU 90","-"],
-    ["NORUEGA", "NOR", "SI" ,"-","RTU 90","-"],
-    ["SUECIA", "SWE", "SI" ,"-","RTU 90","-"],
-    ["PANAMA", "PAN", "SI" ,"-","RTU 90","-"],
-    ["EL SALVADOR", "SLV", "SI" ,"-","RTU 90","-"],
-    ["HONDURAS", "HND", "SI" ,"-","RTU 90","-"],
-    ["NICARAGUA", "NIC", "SI" ,"-","RTU 90","-"],
-    ["ESTADOS UNIDOS", "USA", "SI (Antes del '81)" ,"-","RTU 90","-"],
-    ["ESTADOS UNIDOS", "USA", "No (Despues del '81)" ,"-","ARE 180","-"],
+    ["CHILE", "CHL", "SÍ" ,"RTU 90","RTU 90","AR"],
+    ["COLOMBIA", "COL", "SÍ" ,"RTU 90","RTU 90","AR"],
+    ["ECUADOR", "ECU", "SÍ" ,"RTU 90","RTU 90","AR"],
+    ["ESPAÑA", "ESP", "SÍ" ,"-","RTU 90","-"],
+    ["ITALIA", "ITA", "SÍ" ,"-","RTU 90","-"],
+    ["NORUEGA", "NOR", "SÍ" ,"-","RTU 90","-"],
+    ["SUECIA", "SWE", "SÍ" ,"-","RTU 90","-"],
+    ["PANAMA", "PAN", "SÍ" ,"-","RTU 90","-"],
+    ["EL SALVADOR", "SLV", "SÍ" ,"-","RTU 90","-"],
+    ["HONDURAS", "HND", "SÍ" ,"-","RTU 90","-"],
+    ["NICARAGUA", "NIC", "SÍ" ,"-","RTU 90","-"],
+    ["ESTADOS UNIDOS", "USA", "SÍ (Antes del '81)" ,"-","RTU 90","-"],
+    ["ESTADOS UNIDOS", "USA", "No (Después del '81)" ,"-","ARE 180","-"],
     ["FRANCIA", "FRA", "NO" ,"-","ARE 180","-"],
     ["MEXICO", "MEX", "NO" ,"-","ARE 180","-"],
     ["CANADA", "CAN", "NO" ,"-","ARE 180","-"],
@@ -945,7 +1027,7 @@ const Categorization = () => {
           type="text"
           value={search}
           onChange={handleSearch}
-          placeholder="Buscar pais emisor del documento..."
+          placeholder="Buscar país emisor del documento..."
           className="w-full p-2 border rounded"
         />
       </div>
@@ -953,12 +1035,12 @@ const Categorization = () => {
         <table className="w-full mt-2">
           <thead>
             <tr>
-              <th className="text-left">Pais</th>
-              <th className="text-left">Codigo</th>
-              <th className="text-left">Convenio?</th>
-              <th className="text-left">Cedula de Identida</th>
+              <th className="text-left">País</th>
+              <th className="text-left">Código</th>
+              <th className="text-left">¿Convenio?</th>
+              <th className="text-left">Cédula de Identidad</th>
               <th className="text-left">Pasaporte</th>
-              <th className="text-left">Cedula de Residente</th>
+              <th className="text-left">Cédula de Residente</th>
             </tr>
           </thead>
           <tbody>
@@ -975,122 +1057,6 @@ const Categorization = () => {
           </tbody>
         </table>
       )}
-      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EfrcgdXy3XZHp0_0V3j_wIYBrcgfDgOD040nMXxoZXFooQ?e=M1axfU"}/>
-    </div>
-  );
-};
-
-const Procedimientos = () => {
-  const [search, setSearch] = useState('');
-  const [results, setResults] = useState([]);
-  const [selected, setSelected] = useState(null);
-
-  // Array de ejemplo para categorías
-  const items = [
-  {
-    titulo: "Visado estadounidense",
-    palabrasClave: ["visa", "eeuu", "usa", "estadounidense"],
-    pasos: [
-      "Verificar el tipo de visa ( B1 / B2 / J / O / P (P1-P2-P3) / E / H-1B) y la vigencia.",
-      "Verificar validez en Intranet (issuing (ciudad donde se emitió), surname (apellido), given name (nombre), birth date (fecha de nacimiento)).",
-      "Si es válida, escanear la visa.",
-      'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoria y los días correspondientes a la nacionalidad.'
-    ]
-  },
-  {
-    titulo: "Greencard MEMO 05575830/2026",
-    palabrasClave: ["green", "greencard", "residencia"],
-    pasos: [
-      "Verificar la autenticidad y vigencia de la documentación.",
-      "Si es válida, escanear la credencial.",
-      'Ingresar en "Actuaciones y Visas" y cargar los datos de la categoria y los días correspondientes a la nacionalidad.'
-    ]
-  },
-  {
-    titulo: "Antecedentes colombianos",
-    palabrasClave: ["colombia", "antecedentes", "colombianos"],
-    pasos: [
-      "Verificar en las plataformas habilitadas por las autoridades colombianas.",
-      "Si no presenta irregularidades, liberar al pasajero."
-    ]
-  },
-  {
-    titulo: "Consultas países sensibles",
-    palabrasClave: ["sensibles", "diac", "incidente"],
-    pasos: [
-      "Generar un incidente para intervención del DIAC con la siguiente informacion:",
-      "Destino (hotel o dirección).",
-      "Permanencia (tiempo de estadía).",
-      "Correo electrónico.",
-      "Teléfono.",
-      "Motivo del viaje.",
-      "Derivar al supervisor la documentación sin liberar al pasajero."
-    ]
-  }
-];
-
-  const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
-    setSearch(value);
-    if (value.length >= 3) {
-      const filtered = items.filter(proc =>
-        proc.titulo.toLowerCase().includes(value) ||
-        proc.palabrasClave.some(p => p.includes(value)
-      ));
-      setResults(filtered);
-      // Si no se encontraron resultados, establecer un valor por defecto
-      if (filtered.length === 0) {
-        setResults(items.filter(item => 
-          item.some((itemValue) => 
-            String(itemValue).toLowerCase().includes("otro")
-          )
-        ));
-      }
-    } else {
-      setResults([]);
-    }
-  };
-
-  return (
-    <div className="p-4 bg-white rounded-lg shadow">
-      <List className="w-6 h-6 mb-2 text-purple-500" />
-      <h3 className="text-lg font-semibold">Procedimientos</h3>
-      <div className="mt-2">
-        <input
-          type="text"
-          value={search}
-          onChange={handleSearch}
-          placeholder="Buscar procedimientos vigentes..."
-          className="w-full p-2 border rounded"
-        />
-      </div>
-      {results.length > 0 && (
-    <div className="mt-3 space-y-2">
-        {results.map((proc, index) => (
-            <button
-                key={index}
-                onClick={() => setSelected(proc)}
-                className="w-full text-left p-3 rounded border hover:bg-purple-100 transition"
-            >
-                {proc.titulo}
-            </button>
-        ))}
-    </div>
-)}
-
-{selected && (
-    <div className="mt-4 p-4 border rounded-lg bg-gray-50 shadow-sm">
-        <h4 className="font-bold text-lg mb-3 text-purple-700">
-            {selected.titulo}
-        </h4>
-
-        <ol className="list-decimal ml-5 space-y-2">
-            {selected.pasos.map((paso, i) => (
-                <li key={i}>{paso}</li>
-            ))}
-        </ol>
-    </div>
-)}
       <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/EfrcgdXy3XZHp0_0V3j_wIYBrcgfDgOD040nMXxoZXFooQ?e=M1axfU"}/>
     </div>
   );
@@ -1123,8 +1089,6 @@ const App = () => {
         return <Agreements />;
       case 'Categorization':
         return <Categorization />;
-      case 'Procedimientos':
-        return <Procedimientos />;
       default:
         return null;
     }
@@ -1161,12 +1125,6 @@ const App = () => {
                 <h3 className="text-lg font-semibold">Categorización de Argentinos</h3>
               </div>
             </button>
-            <button onClick={() => setSelectedTool('Procedimientos')}>
-              <div className="p-4 bg-white rounded-lg shadow transition-transform transform hover:scale-105 hover:shadow-lg">
-                <List className="w-6 h-6 mb-2 text-purple-500" />
-                <h3 className="text-lg font-semibold">Procedimientos vigentes</h3>
-              </div>
-            </button>
           </div>
              
         </div>
@@ -1179,8 +1137,8 @@ const App = () => {
         )}
 <div className="mt-8 space-y-4">
             <OutputCard title="Link para consulta de registros migratorios (Particulares)" url="https://www.migraciones.gob.ar/transitos/" />
-            <OutputCard title="Consulta de antecedentes Policia - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
-            <OutputCard title="Generacion de antecedentes procuraduria - Colombia" url="https://www.procuraduria.gov.co/pages/generacion-de-antecedentes.aspx" />
+            <OutputCard title="Consulta de antecedentes Policía - Colombia" url="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" />
+            <OutputCard title="Generación de antecedentes Procuraduría - Colombia" url="https://www.procuraduria.gov.co/pages/generacion-de-antecedentes.aspx" />
             <OutputCard title="Consulta de expedientes Judiciales - Colombia" url="https://procesos.ramajudicial.gov.co/jepms/bogotajepms/conectar.asp" />
             <OutputCard title="Consulta de expedientes judiciales - Colombia" url="https://consultaprocesos.ramajudicial.gov.co/procesos/NombreRazonSocial" />
   
@@ -1189,10 +1147,10 @@ const App = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-4 mt-4">Salida</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <OutputCard title="Validaciòn de Documentos Provincia de San Juan" url="https://validacion.sanjuan.gob.ar/" />
+            <OutputCard title="Validación de Documentos Provincia de San Juan" url="https://validacion.sanjuan.gob.ar/" />
             <OutputCard title="Partida de Nacimiento Provincia de Buenos Aires" url="https://www.gdeba.gba.gob.ar/consultagedo/" />
             <OutputCard title="Portal de Autenticidad Ciudad de Buenos Aires" url="https://buenosaires.gob.ar/inicio/portal-autenticidad" />
-            <OutputCard title="Verificacion de Apostilla o Legalizacion" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
+            <OutputCard title="Verificación de Apostilla o Legalización" url="https://www.argentina.gob.ar/relacionesexterioresyculto/legalizacion-internacional" />
             <OutputCard title="Validador de actas Santiago del Estero" url="https://validaciones.sde.gob.ar/" />
             <OutputCard title="Validador de Datos de Partidas On-line Misiones" url="https://www.registrocivil.misiones.gov.ar/index.php/gestion/verificacion" />
             <OutputCard title="Consultar Último Ejemplar DNI" url="https://tramites.renaper.gob.ar/mi_ejemplar/" />
