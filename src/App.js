@@ -333,7 +333,7 @@ const VisaRegime = () => {
     ["KIRGUISTÁN", "KGZ", "V", "V", "V","CONSULTA"],
     ["KIRIBATI", "KIR", "V-AVE", "V", "V",""],
     ["KOSOVO", "XKK", "C/V", "x", "x",""],
-    ["KUWAIT", "KWT", "V", "V", "V","INFORMATIVO"],
+    ["KUWAIT", "KWT", "V-AVE", "V", "V","INFORMATIVO"],
     ["LAOS (LAO)", "LAO", "V-AVE", "V", "V",""],
     ["LESOTHO", "LSO", "V-AVE", "V", "V",""],
     ["LETONIA (LATVIA) (OCDE)", "LVA", "-", "-", "-",""],
@@ -856,7 +856,7 @@ const VisaRegime = () => {
           </div>
         </div>
       )}
-      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/IQCfOjMp3qFxRqUKQdNPtD0iAQYeC5INjdYX_rxKiRIhRGw?e=ndecy1"} />
+      <ConsultarFuenteButton url={"https://dirnacmigraciones-my.sharepoint.com/:b:/g/personal/aepavon_migraciones_gob_ar/IQAA5g18fdkXT5W_ygc5Pfd9AaNq0ursKcM258WqK2ChecA?e=XwvHHH"} />
     </div>
   );
 };
